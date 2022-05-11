@@ -12,7 +12,7 @@ def write():
             if(x['attributes']['slug'] and x['attributes']['posterImage'] and x['attributes']['episodeCount'] and x['attributes']['description']):
                 lines.append(f"{x['attributes']['slug'].replace('-','_')}= Anime(name='{x['attributes']['slug'].replace('-',' ')}', cover='{x['attributes']['posterImage']['large']}', episodes={x['attributes']['episodeCount']}, bio='''{x['attributes']['description']}''')")
                 names.append(x['attributes']['slug'].replace('-','_'))
-        with open('anime.txt', 'w') as f:
+        with open('anime.py', 'w') as f:
             for line in lines:
                 f.write(line)
                 f.write('\n')

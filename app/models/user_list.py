@@ -12,14 +12,14 @@ class User_List(db.Model):
   comment = db.Column(db.String(1000))
   rewatches = db.Column(db.Integer, default=0)
 
-  anime = db.relationship('Anime', back_populates='user_list')
   user = db.relationship('User', back_populates='user_list')
+  anime = db.relationship('Anime', back_populates='user_list')
 
   def to_dict(self):
     return {
       'id': self.id,
-      'user': [user.to_dict() for user in self.user],
-      'anime': [anime.to_dict() for anime in self.anime],
+      'user': self.user.to_dict(),
+      'anime': self.anime.to_dict(),
       'progress': self.progress,
       'status': self.status,
       'score': self.score,
