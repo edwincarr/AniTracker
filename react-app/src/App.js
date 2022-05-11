@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -48,8 +48,11 @@ function App() {
         <ProtectedRoute path='/home' exact={true}>
 
         </ProtectedRoute>
-        <Route path='/'>
-          404 - page not found
+        <Route path={user ? '/home' : '/'} exact={true}>
+          splash
+        </Route>
+        <Route>
+          <Redirect to='/home' />
         </Route>
       </Switch>
     </BrowserRouter>
