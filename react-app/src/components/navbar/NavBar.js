@@ -9,7 +9,9 @@ const NavBar = ({user}) => {
     <nav>
       {user?
       <>
+      <NavLink to='/home'>
         <Svg className='nav-logo'/>
+      </NavLink>
         <div className='nav-links'>
           <NavLink to='/home'>Home</NavLink>
           <NavLink to={`/user/${user.username}`}>Profile</NavLink>
@@ -23,7 +25,9 @@ const NavBar = ({user}) => {
 
       :
       <>
+      <NavLink to='/'>
         <Svg className='nav-logo'/>
+      </NavLink>
         <div className='nav-links'>
           <NavLink to='/browse/anime'>Browse</NavLink>
         </div>
