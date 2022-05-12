@@ -13,7 +13,7 @@ const Browse = () => {
 
   const onScroll = () => {
     let count = 0
-    if(window.pageYOffset > containerRef.current.clientHeight -900){
+    if(window.pageYOffset > containerRef?.current?.clientHeight -900){
       if(count === 0){
         dispatch(loadingAnime(anime.page))
         count+=1
@@ -36,8 +36,9 @@ const Browse = () => {
     dispatch(loadingAnime(anime.page))
   }, [])
 
+
   return (
-    <div className='browse-container' ref={containerRef}>
+    <div className='browse-container' ref={containerRef} >
     {anime?.anime?.map(arr => {
       return (
         <AnimeCard anime={arr}/>

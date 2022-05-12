@@ -7,6 +7,7 @@ import NavBar from './components/navbar/NavBar.js';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import Browse from './components/browsing';
+import AnimePage from './components/anime_page';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,7 +40,7 @@ function App() {
           <Browse />
         </Route>
         <Route path='/anime/:animeid'>
-
+          <AnimePage />
         </Route>
         <Route path='/user/:username' exact={true}>
 
