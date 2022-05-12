@@ -31,7 +31,7 @@ export default function anime_reducer(state = initialState, action) {
       newState.page = state.page + 1
       return newState
     case CLEAR_ANIME:
-      return newState = {...state}
+      return initialState
     default:
       return state;
   }
