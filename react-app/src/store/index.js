@@ -1,12 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import anime_reducer from './anime';
 import session from './session'
 import list_reducer from './user_list';
 
 const rootReducer = combineReducers({
   session,
   list: list_reducer,
-  
+  anime: anime_reducer,
 });
 
 

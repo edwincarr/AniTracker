@@ -1,0 +1,26 @@
+.browse-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  padding: 10% 50px;
+  max-width: 1150px;
+  align-self: center;
+  min-width: 320px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.card img{
+  max-width: 190px;
+  align-self: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.card h4 {
+  margin: 0;
+  max-width: 190px;
+  text-transform: capitalize;
+  font-size: .8em;
+}
+.card {
+  cursor: pointer;
+}
