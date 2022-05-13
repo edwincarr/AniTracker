@@ -10,6 +10,7 @@ import Browse from './components/browsing';
 import AnimePage from './components/anime_page';
 import AnimeList from './components/anime_list';
 import ProfilePage from './components/profile_page';
+import Splash from './components/splash_page';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,7 +55,7 @@ function App() {
 
         </ProtectedRoute>
         <Route path={user ? '/home' : '/'} exact={true}>
-          splash
+          <Splash />
         </Route>
         <Route>
           <Redirect to='/home' />

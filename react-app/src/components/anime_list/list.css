@@ -11,6 +11,7 @@
   height: 70px;
   gap: 20px;
   justify-content: space-between;
+  cursor: pointer;
 }
 .list-container {
   display: flex;
@@ -28,7 +29,7 @@
 .list-comp{
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .title-n-row {
   text-transform: capitalize;

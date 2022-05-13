@@ -11,12 +11,12 @@ const AnimePage = () => {
 
   useEffect(() => {
     dispatch(getOneAnime(animeid))
-  },[])
+  },[dispatch, animeid])
 
   return (
     <div>
       <div>
-        <img src={currentAni.cover} height='300'/>
+        <img src={currentAni.cover} height='300' alt={currentAni.name}/>
         <p>{currentAni.name}</p>
         <p>{currentAni.episodes} episodes</p>
       </div>

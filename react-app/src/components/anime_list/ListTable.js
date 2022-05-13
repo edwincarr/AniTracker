@@ -19,6 +19,8 @@ const ListTable = ({list, status}) => {
         return header = <h2>Paused</h2>
       case 4:
         return header = <h2>Dropped</h2>
+      default:
+        return
     }
   }
   headerFunc()
@@ -44,7 +46,7 @@ const ListTable = ({list, status}) => {
           }
           return (
             <div id={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
-            <img src={anime.anime.cover} className='list-n-row'/>
+            <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>
             <p className='title-n-row'>{anime.anime.name}</p>
             <p>{anime.score ? anime.score: 0}</p>
             {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}

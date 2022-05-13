@@ -7,7 +7,7 @@ const ProfileNav = () => {
     <>
     <div className="wide"></div>
     <div className="profile-nav-user">
-      <img src={user.profile_pic} className='profile-nav-pp'/>
+      <img src={user.profile_pic} className='profile-nav-pp' alt={user.username}/>
       <div className="profile-nav-username">{user.username}</div>
     </div>
     <div className="profile-nav">

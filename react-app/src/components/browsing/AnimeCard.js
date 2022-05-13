@@ -10,7 +10,7 @@ const AnimeCard = ({anime}) => {
 
   return (
     <div className='card' onClick={onClick}>
-      <img src={anime.cover}/>
+      <img src={anime.cover} alt={anime.name}/>
       <h4>{anime.name}</h4>
     </div>
   )

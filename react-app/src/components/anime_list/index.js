@@ -9,12 +9,11 @@ import ProfileNav from "../profile_nav"
 const AnimeList = () => {
   const { userid } = useParams()
   const list = useSelector(state => state.list.current)
-  console.log(list)
   const dispatch = useDispatch()
   useEffect(()=> {
     dispatch(get_list(userid))
-  }, [])
-
+  }, [dispatch, userid])
+// changed [] to whatever this is ^
   return (list && (
     <>
     <ProfileNav />

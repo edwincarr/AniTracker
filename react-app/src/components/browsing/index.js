@@ -32,7 +32,7 @@ const Browse = () => {
     return () => {
       window.removeEventListener('scroll', scrollEvent)
     };
-  }, [anime])
+  }, [])
 
 
   useEffect(()=>{
