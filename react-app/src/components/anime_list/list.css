@@ -1,0 +1,34 @@
+.list-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.list-cover{
+  width: 50px;
+}
+.row-entry {
+  display: flex;
+  height: 70px;
+  gap: 20px;
+  justify-content: space-between;
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #FBFBFB;
+  box-shadow: 0 0 10px rgb(224, 224, 224);
+  border-radius: 5px;
+  width: 70%;
+  max-width: 1170px;
+  padding:5px;
+  min-height: 100px;
+  gap: 10px;
+}
+.list-comp{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.title-n-row {
+  text-transform: capitalize;
+}

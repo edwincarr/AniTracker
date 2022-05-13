@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import Browse from './components/browsing';
 import AnimePage from './components/anime_page';
+import AnimeList from './components/anime_list';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,11 +43,11 @@ function App() {
         <Route path='/anime/:animeid'>
           <AnimePage />
         </Route>
-        <Route path='/user/:username' exact={true}>
+        <Route path='/user/:userid' exact={true}>
 
         </Route>
-        <Route path='/user/:username/animelist' exact={true}>
-
+        <Route path='/user/:userid/animelist' exact={true}>
+          <AnimeList/>
         </Route>
         <ProtectedRoute path='/home' exact={true}>
 
