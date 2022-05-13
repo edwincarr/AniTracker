@@ -1,0 +1,29 @@
+.wide {
+  height: 400px;
+  width: 100%;
+  background-color: #1e2034;
+  z-index: -1;
+}
+.profile-nav-pp {
+  height: 100px;
+  width: 100px;
+}
+.profile-nav {
+  width: 100%;
+  background-color: white;
+  height: 50px;
+  box-shadow: 0px 10px 20px #dee4ec;
+  z-index: -101;
+}
+.profile-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: -100px;
+  padding-left: 10%;
+}
+.profile-nav-username {
+  color: white;
+  font-size: large;
+  font-weight: 600;
+}

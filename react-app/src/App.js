@@ -9,6 +9,7 @@ import { authenticate } from './store/session';
 import Browse from './components/browsing';
 import AnimePage from './components/anime_page';
 import AnimeList from './components/anime_list';
+import ProfilePage from './components/profile_page';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,7 +45,7 @@ function App() {
           <AnimePage />
         </Route>
         <Route path='/user/:userid' exact={true}>
-
+          <ProfilePage />
         </Route>
         <Route path='/user/:userid/animelist' exact={true}>
           <AnimeList/>
