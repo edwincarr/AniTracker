@@ -20,7 +20,17 @@
   max-width: 190px;
   text-transform: capitalize;
   font-size: .8em;
+  color: rgb(116, 116, 116);
+  transition: color .2s;
 }
+
 .card {
   cursor: pointer;
+}
+.card:hover h4{
+  color:#3480eb;
+}
+
+.nav--hidden {
+  transform: translateY(calc(-1 * var(--nav-height)));
 }

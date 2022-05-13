@@ -8,7 +8,7 @@ const NavBar = ({user}) => {
   return (
     <nav>
       {user?
-      <>
+      <div className='nav'>
       <NavLink to='/home'>
         <Svg className='nav-logo'/>
       </NavLink>
@@ -21,10 +21,10 @@ const NavBar = ({user}) => {
         <div className='auth'>
           <LogoutButton/>
         </div>
-      </>
+      </div>
 
       :
-      <>
+      <div className='nav'>
       <NavLink to='/'>
         <Svg className='nav-logo'/>
       </NavLink>
@@ -35,7 +35,7 @@ const NavBar = ({user}) => {
           <NavLink to='/login'>Login</NavLink>
           <NavLink className='signup' to='/signup'>Sign Up</NavLink>
         </div>
-      </>
+      </div>
       }
     </nav>
   )

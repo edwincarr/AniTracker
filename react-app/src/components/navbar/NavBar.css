@@ -1,14 +1,27 @@
 nav {
+  width: 100%;
   display: flex;
   background-color: #2b2d42;
-  height: 75px;
+  height: var(--nav-height);
   align-items: center;
-  padding: 0 25%;
-  justify-content: space-between;
+  justify-content: center;
+  /* padding: 0 15%; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.4s;
+}
+.nav {
+display: flex;
+align-items: center;
+width: 100%;
+max-width: 1000px;
+justify-content: space-between;
 }
 .nav-links{
   display: flex;
   gap: 20px;
+
 }
 .auth {
   display: flex;
