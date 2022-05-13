@@ -4,7 +4,7 @@
   justify-content: space-between;
 }
 .list-cover{
-  width: 50px;
+  width: 100px;
 }
 .row-entry {
   display: flex;
@@ -20,7 +20,8 @@
   border-radius: 5px;
   width: 70%;
   max-width: 1170px;
-  padding:5px;
+  min-width: 400px;
+  padding:15px;
   min-height: 100px;
   gap: 10px;
 }
@@ -31,4 +32,26 @@
 }
 .title-n-row {
   text-transform: capitalize;
+  max-width: 160px;
+  margin: 0;
+}
+.list-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15%;
+}
+.list h2{
+align-self: flex-start;
+padding: 0 10%;
+color: #26343f;
+font-weight: 500;
+}
+.list-n-row{
+  border-radius: 5px;
 }

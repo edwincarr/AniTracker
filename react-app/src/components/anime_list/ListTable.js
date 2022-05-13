@@ -1,6 +1,8 @@
+import { useHistory } from 'react-router-dom'
 import './list.css'
 
 const ListTable = ({list, status}) => {
+  const history = useHistory()
   if(!list.length){
     return null
   }
@@ -21,6 +23,10 @@ const ListTable = ({list, status}) => {
   }
   headerFunc()
 
+  const onClick = (id) => {
+    history.push(`/anime/${id}`)
+  }
+
   return (list && (
     <>
     {header}
@@ -37,11 +43,11 @@ const ListTable = ({list, status}) => {
             return null;
           }
           return (
-            <div id={idx} className='row-entry'>
-            <img src={anime.anime.cover}/>
+            <div id={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
+            <img src={anime.anime.cover} className='list-n-row'/>
             <p className='title-n-row'>{anime.anime.name}</p>
             <p>{anime.score ? anime.score: 0}</p>
-            {status === 22 ? <p>{anime.progress}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
+            {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
             </div>
             )
           })}
