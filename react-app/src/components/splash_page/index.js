@@ -1,6 +1,12 @@
+import { useHistory } from 'react-router-dom'
 import './splash.css'
 
 const Splash = () => {
+  const history = useHistory()
+
+  const onClick = () => {
+    history.push(`/signup`)
+  }
   return (
     <div className='splash-body'>
       <div className='splash-container'>
@@ -38,7 +44,7 @@ const Splash = () => {
             </div>
           </div>
         </div>
-        <div className='splash-button'>Join Now</div>
+        <div className='splash-button' onClick={onClick}>Join Now</div>
       </div>
     </div>
   )

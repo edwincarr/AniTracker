@@ -48,3 +48,20 @@
 .splash-grid h4{
   color: #f0f3f6;
 }
+.splash-button {
+  margin-top: 40px;
+  width: 200px;
+  border-radius: 50px;
+  background-color: #3577ff;
+  text-align: center;
+  padding: 10px;
+  font-size: larger;
+  font-weight: bolder;
+  color: #f0f3f6;
+  box-shadow: 0 0 20px rgb(49, 49, 49);
+  cursor: pointer;
+  transition: all .2s;
+}
+.splash-button:hover {
+  box-shadow:0 0 50px #4aa4f8;
+}
