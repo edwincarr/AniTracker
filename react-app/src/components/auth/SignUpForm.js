@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './auth.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -14,12 +15,10 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, repeatPassword));
       if (data) {
         setErrors(data)
       }
-    }
   };
 
   const updateUsername = (e) => {
@@ -43,51 +42,54 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <div className='form-bg'>
+
+    <form className='auth-forms' onSubmit={onSignUp}>
+      <h1>Sign Up</h1>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))}
+          ))}
       </div>
       <div>
-        <label>User Name</label>
         <input
           type='text'
           name='username'
+          placeholder='Username'
           onChange={updateUsername}
           value={username}
-        ></input>
+          ></input>
       </div>
       <div>
-        <label>Email</label>
         <input
           type='text'
           name='email'
+          placeholder='Email'
           onChange={updateEmail}
           value={email}
-        ></input>
+          ></input>
       </div>
       <div>
-        <label>Password</label>
         <input
           type='password'
           name='password'
+          placeholder='Pasword'
           onChange={updatePassword}
           value={password}
-        ></input>
+          ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
         <input
           type='password'
           name='repeat_password'
+          placeholder='Repeat Password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
-          required={true}
-        ></input>
+          ></input>
       </div>
       <button type='submit'>Sign Up</button>
     </form>
+          </div>
   );
 };
 
