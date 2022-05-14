@@ -1,9 +1,19 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { get_other_user } from "../../store/session"
+import { useParams } from 'react-router-dom'
 import './profilenav.css'
 
 const ProfileNav = () => {
-  const user = useSelector(state => state.session.user)
-  return (
+  const { userid } = useParams()
+  const user = useSelector(state => state.session.other)
+  const dispatch = useDispatch()
+
+  useEffect(()=> {
+    dispatch(get_other_user(userid))
+  },[userid])
+
+  return (user && (
     <>
     <div className="wide"></div>
     <div className="profile-nav-user">
@@ -14,6 +24,7 @@ const ProfileNav = () => {
 
     </div>
     </>
+    )
   )
 }
 export default ProfileNav

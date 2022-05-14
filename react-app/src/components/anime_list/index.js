@@ -10,11 +10,12 @@ const AnimeList = () => {
   const { userid } = useParams()
   const list = useSelector(state => state.list.current)
   const dispatch = useDispatch()
+
   useEffect(()=> {
     dispatch(get_list(userid))
-  }, [])
-  
-  return (list && (
+  }, [userid])
+
+  return (
     <>
     <ProfileNav />
     <div className="list">
@@ -25,7 +26,6 @@ const AnimeList = () => {
       <ListTable className='list-comp' list={list} status={3}/>
     </div>
     </>
-  )
   )
 }
 export default AnimeList
