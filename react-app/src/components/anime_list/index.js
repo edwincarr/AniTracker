@@ -12,9 +12,8 @@ const AnimeList = () => {
   const dispatch = useDispatch()
   useEffect(()=> {
     dispatch(get_list(userid))
-  }, [dispatch, userid])
-// changed [] to whatever this is ^
-  return (list && (
+  }, [])
+  return (
     <>
     <ProfileNav />
     <div className="list">
@@ -25,7 +24,6 @@ const AnimeList = () => {
       <ListTable className='list-comp' list={list} status={3}/>
     </div>
     </>
-)
   )
 }
 export default AnimeList
