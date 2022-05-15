@@ -27,6 +27,6 @@ six==1.15.0
 sqlalchemy==1.4.19
 werkzeug==2.0.1
 wtforms==2.3.3
-eventlet = "==0.30.2"
-requests = "*"
-email_validator= "*"
+eventlet == 0.30.2
+requests ==2.27.1
+email_validator==1.2.1
