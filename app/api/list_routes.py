@@ -8,8 +8,13 @@ from flask_login import current_user
 list_routes = Blueprint('lists', __name__)
 
 @list_routes.route('/<int:userid>', methods=['GET'])
-def getuserlist(userid):
+def getcurrentlist(userid):
   list = User_List.query.join(User).filter(User_List.user_id == userid).all()
+  return {'current_list': [li.to_dict() for li in list]}
+
+@list_routes.route('/', methods=['GET'])
+def getuserlist():
+  list = User_List.query.join(User).filter(User_List.user_id == current_user.id).all()
   return {'user_list': [li.to_dict() for li in list]}
 
 @list_routes.route('/', methods=['POST'])

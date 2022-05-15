@@ -3,20 +3,24 @@ import { useState } from 'react'
 import './anime_form.css'
 import { create_list_row } from '../../store/user_list'
 
-const ListForm = ({current}) => {
+const ListForm = ({current, oldata}) => {
   const dispatch = useDispatch()
   const [errors, setErrors] = useState([]);
-  const [status, setStatus] = useState(0);
-  const [score, setScore] = useState(0);
-  const [progress, setProgress] = useState(0)
+  const [status, setStatus] = useState(oldata ? oldata.status : 0);
+  const [score, setScore] = useState(oldata ? oldata.score : 0);
+  const [progress, setProgress] = useState(oldata ? oldata.progress : 0)
   const onSubmit = (e) => {
     e.preventDefault()
-    const data = {
-      status,
-      score,
-      progress
+    if(oldata){
+      // send an update
+    }else{
+      const data = {
+        status,
+        score,
+        progress
+      }
+      dispatch(create_list_row(data))
     }
-    dispatch(create_list_row(data))
   }
 
   const updateStatus = (e) => {

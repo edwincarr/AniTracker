@@ -4,6 +4,6 @@ from wtforms.validators import DataRequired
 from app.models import User
 
 class ListForm(FlaskForm):
-  status = IntegerField('status', validators=[DataRequired()])
+  status = IntegerField('status')
   score = IntegerField('score')
-  progress = IntegerField('progress', validators=[DataRequired()])
+  progress = IntegerField('progress')

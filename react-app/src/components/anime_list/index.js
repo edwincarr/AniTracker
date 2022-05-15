@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { get_list } from "../../store/user_list"
 import ListTable from "./ListTable"
 import './list.css'
 import ProfileNav from "../profile_nav"
+import { get_curr_list } from "../../store/user_list"
 
 const AnimeList = () => {
   const { userid } = useParams()
@@ -12,7 +12,7 @@ const AnimeList = () => {
   const dispatch = useDispatch()
 
   useEffect(()=> {
-    dispatch(get_list(userid))
+    dispatch(get_curr_list(userid))
   }, [userid])
 
   return (

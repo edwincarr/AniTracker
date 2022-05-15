@@ -11,15 +11,18 @@ import AnimePage from './components/anime_page';
 import AnimeList from './components/anime_list';
 import ProfilePage from './components/profile_page';
 import Splash from './components/splash_page';
+import { get_user_list } from './store/user_list';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const user = useSelector(state => state.session.user)
+  const userList = useSelector(state => state.list.user)
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(get_user_list())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -43,7 +46,7 @@ function App() {
           <Browse />
         </Route>
         <Route path='/anime/:animeid'>
-          <AnimePage />
+          <AnimePage userList={userList}/>
         </Route>
         <Route path='/user/:userid' exact={true}>
           <ProfilePage />
