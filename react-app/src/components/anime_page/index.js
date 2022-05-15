@@ -2,6 +2,9 @@ import { useEffect } from "react"
 import { useDispatch, useSelector} from "react-redux"
 import { useParams } from 'react-router-dom'
 import { getOneAnime } from "../../store/anime"
+import ListForm from "../list_form"
+import ModalThing from "../modal"
+import './animePage.css'
 
 const AnimePage = () => {
   const currentAni = useSelector(state => state.anime.currentAni)
@@ -23,6 +26,9 @@ const AnimePage = () => {
       <div>
         <p>{currentAni.bio}</p>
       </div>
+      <ModalThing>
+        <ListForm current={currentAni}/>
+      </ModalThing>
     </div>
   )
 }
