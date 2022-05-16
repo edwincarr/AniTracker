@@ -31,7 +31,7 @@ export const get_user_list = () => async(disptach) => {
 }
 
 export const create_list_row = (data) => async(dispatch) => {
-  const { progress, status, score } = data
+  const { progress, status, score, animeid} = data
   const response = await fetch(`/api/lists/`, {
     method: 'POST',
     headers: {
@@ -40,11 +40,10 @@ export const create_list_row = (data) => async(dispatch) => {
     body: JSON.stringify({
       progress,
       score,
-      status
+      status,
+      animeid
     })
   })
-
-
   if (response.ok) {
     const data = await response.json();
     dispatch(create(data))
@@ -57,6 +56,22 @@ export const create_list_row = (data) => async(dispatch) => {
   } else {
     return ['An error occurred. Please try again.']
   }
+}
+
+export const update_list_row = (data) => async(dispatch) => {
+  const { progress, status, score, animeid } = data
+  const response = await fetch(`/api/lists/`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      progress,
+      score,
+      status,
+      animeid
+    })
+  })
 }
 
 

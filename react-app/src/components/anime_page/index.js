@@ -34,7 +34,6 @@ const AnimePage = () => {
     }
   },[isLoaded])
 
-
   return (
     <div>
       <div>

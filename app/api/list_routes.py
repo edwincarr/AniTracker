@@ -7,6 +7,16 @@ from flask_login import current_user
 
 list_routes = Blueprint('lists', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 @list_routes.route('/<int:userid>', methods=['GET'])
 def getcurrentlist(userid):
   list = User_List.query.join(User).filter(User_List.user_id == userid).all()
@@ -25,7 +35,24 @@ def changeStatusStuff():
   data = request.get_json()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    print('++++++++++++++++++++++++++++++++++++++++')
-    return current_user.to_dict()
-  print('----------------------------------------')
-  return current_user.to_dict()
+    new_row = User_List(user_id=current_user.id, anime_id=form.data['animeid'], progress=form.data['progress'], status=form.data['status'], score=form.data['score'])
+    db.session.add(new_row)
+    db.session.commit()
+    return new_row.to_dict()
+
+  return {'errors': validation_errors_to_error_messages(form.errors)}
+
+@list_routes.route('/', methods=['PATCH'])
+@login_required
+def updateStatusStuff():
+  form = ListForm()
+  data = request.get_json()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    old_row = User_List.query.join(User).filter(User_List.user_id == current_user.id, User_List.anime_id == form.data['animeid']).one()
+    old_row.progress = form.data['progress']
+    old_row.status = form.data['status']
+    old_row.score = form.data['score']
+    db.session.commit()
+    return old_row.to_dict()
+  return {'errors': validation_errors_to_error_messages(form.errors)}
