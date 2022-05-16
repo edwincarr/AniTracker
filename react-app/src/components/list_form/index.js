@@ -1,10 +1,13 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import './anime_form.css'
 import { create_list_row, delete_list_row, update_list_row } from '../../store/user_list'
+import { useHistory } from 'react-router-dom'
 
 const ListForm = ({current, oldata}) => {
   const dispatch = useDispatch()
+  const user = useSelector(state => state.session.user)
+  const history = useHistory()
   const [errors, setErrors] = useState([]);
   const [status, setStatus] = useState(oldata?.status ? oldata.status : 0);
   const [score, setScore] = useState(oldata?.score ? oldata.score : 0);
@@ -23,6 +26,7 @@ const ListForm = ({current, oldata}) => {
     }else{
       dispatch(create_list_row(data))
     }
+    history.push(`/user/${user.id}/animelist`)
   }
 
   const updateStatus = (e) => {
