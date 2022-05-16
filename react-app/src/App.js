@@ -16,13 +16,11 @@ import { get_user_list } from './store/user_list';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const user = useSelector(state => state.session.user)
-  const userList = useSelector(state => state.list.user)
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      dispatch(get_user_list())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -46,7 +44,7 @@ function App() {
           <Browse />
         </Route>
         <Route path='/anime/:animeid'>
-          <AnimePage userList={userList ? userList : [0,0,0]}/>
+          <AnimePage />
         </Route>
         <Route path='/user/:userid' exact={true}>
           <ProfilePage />
