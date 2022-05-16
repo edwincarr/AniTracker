@@ -10,7 +10,7 @@ import './animePage.css'
 const AnimePage = () => {
   const currentAni = useSelector(state => state.anime.currentAni)
   const user = useSelector(state => state.session.user)
-  const userList = useSelector(state => state.list.current)
+  const userList = useSelector(state => state.list.user)
   const [ isLoaded, setIsLoaded ] = useState(false)
   const { animeid } = useParams()
   const [ doesExist, setDoesExist ] = useState(false)
@@ -24,17 +24,17 @@ const AnimePage = () => {
   },[dispatch, animeid])
 
   useEffect(()=> {
-    if(user !== null && isLoaded){
-      userList.forEach(anime => {
+    if(isLoaded){
+      userList?.forEach(anime => {
         if (anime.anime.id == Number(animeid)){
-          console.log(anime.anime.id, Number(animeid))
           setDoesExist(true)
           setData(anime)
         }
       })
     }
-  },[userList])
-  
+  },[isLoaded])
+
+
   return (
     <div>
       <div>
