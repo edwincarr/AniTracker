@@ -9,7 +9,7 @@ import './animePage.css'
 const AnimePage = ({userList}) => {
   const currentAni = useSelector(state => state.anime.currentAni)
   const { animeid } = useParams()
-  const [ doesExist, setDoesExist] = useState(false)
+  const [ doesExist, setDoesExist ] = useState(false)
   const [ data, setData ] = useState([])
   const dispatch = useDispatch()
 
@@ -19,10 +19,12 @@ const AnimePage = ({userList}) => {
 
   useEffect(()=> {
     userList.forEach(anime => {
-      if (anime.anime.id == Number(animeid)){
-        console.log(anime.anime.id, Number(animeid))
-        setDoesExist(true)
-        setData(anime)
+      if(anime !== 0){
+        if (anime.anime.id == Number(animeid)){
+          console.log(anime.anime.id, Number(animeid))
+          setDoesExist(true)
+          setData(anime)
+        }
       }
     })
   },[userList])
@@ -39,9 +41,11 @@ console.log(doesExist)
       <div>
         <p>{currentAni.bio}</p>
       </div>
+      {currentAni ?
       <ModalThing>
         <ListForm current={currentAni} oldata={doesExist? data:null}/>
       </ModalThing>
+      : null}
     </div>
   )
 }

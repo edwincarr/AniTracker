@@ -8,7 +8,6 @@ from flask_login import current_user
 list_routes = Blueprint('lists', __name__)
 
 @list_routes.route('/<int:userid>', methods=['GET'])
-@login_required
 def getcurrentlist(userid):
   list = User_List.query.join(User).filter(User_List.user_id == userid).all()
   return {'current_list': [li.to_dict() for li in list]}

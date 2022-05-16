@@ -46,7 +46,7 @@ function App() {
           <Browse />
         </Route>
         <Route path='/anime/:animeid'>
-          <AnimePage userList={userList}/>
+          <AnimePage userList={userList ? userList : [0,0,0]}/>
         </Route>
         <Route path='/user/:userid' exact={true}>
           <ProfilePage />
