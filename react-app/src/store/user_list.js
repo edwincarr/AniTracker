@@ -74,6 +74,16 @@ export const update_list_row = (data) => async(dispatch) => {
   })
 }
 
+export const delete_list_row = (data) => async(dispatch) => {
+  const response = await fetch(`/api/lists/`, {
+    method:'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      data
+    })
+  })
+}
+
 
 const initialState = { current:{}, user:{}};
 

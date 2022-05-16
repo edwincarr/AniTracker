@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import './anime_form.css'
-import { create_list_row, update_list_row } from '../../store/user_list'
+import { create_list_row, delete_list_row, update_list_row } from '../../store/user_list'
 
 const ListForm = ({current, oldata}) => {
   const dispatch = useDispatch()
@@ -34,6 +34,9 @@ const ListForm = ({current, oldata}) => {
   const updateProgress = (e) => {
     setProgress(Number(e.target.value))
   }
+  const onDelete = () => {
+    dispatch(delete_list_row(oldata.id))
+  }
 
   return (
     <div className='form'>
@@ -48,6 +51,7 @@ const ListForm = ({current, oldata}) => {
         <input placeholder='Score' onChange={updateScore} value={score} type='number' max='10' min='0'/>
         <input placeholder='Progress' onChange={updateProgress} value={progress} type='number' min='0' max={current.episodes}/>
         <button type='submit'>Save</button>
+        {oldata ? <div onClick={onDelete}>delete</div> : null}
       </form>
     </div>
   )

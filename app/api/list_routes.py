@@ -56,3 +56,12 @@ def updateStatusStuff():
     db.session.commit()
     return old_row.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}
+
+@list_routes.route('/', methods=['DELETE'])
+@login_required
+def deleteStatusStuff():
+  data = request.get_json()
+  row = User_List.query.get(data['data'])
+  db.session.delete(row)
+  db.session.commit()
+  return 'success'
