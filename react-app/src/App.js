@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(get_user_list())
+      dispatch(get_user_list())
       setLoaded(true);
     })();
   }, [dispatch]);
