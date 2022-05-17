@@ -11,11 +11,13 @@ const Browse = () => {
   const anime = useSelector(state => state.anime)
 
   let lastScrollY = window.scrollY
+
   const nav = document.querySelector('nav')
   const onScroll = () => {
     if(window.pageYOffset > containerRef?.current?.clientHeight -900){
         dispatch(loadingAnime(anime.page))
     }
+
     if(lastScrollY < window.scrollY){
       nav.classList.add('nav--hidden')
     } else {

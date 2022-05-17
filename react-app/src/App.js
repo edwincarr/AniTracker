@@ -11,7 +11,6 @@ import AnimePage from './components/anime_page';
 import AnimeList from './components/anime_list';
 import ProfilePage from './components/profile_page';
 import Splash from './components/splash_page';
-import { get_user_list } from './store/user_list';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

@@ -18,6 +18,7 @@ def write():
             for line in lines:
                 f.write(line)
                 f.write('\n')
+            
             f.close()
 
 

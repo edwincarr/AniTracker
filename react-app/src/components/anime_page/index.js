@@ -2,7 +2,10 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector} from "react-redux"
 import { useParams } from 'react-router-dom'
 import { getOneAnime } from "../../store/anime"
+import { getting_comments } from "../../store/comments"
 import { get_user_list } from "../../store/user_list"
+import Comments from "../comments"
+import PostComment from "../comments/PostComment"
 import ListForm from "../list_form"
 import ModalThing from "../modal"
 import './animePage.css'
@@ -11,6 +14,7 @@ const AnimePage = () => {
   const currentAni = useSelector(state => state.anime.currentAni)
   const user = useSelector(state => state.session.user)
   const userList = useSelector(state => state.list.user)
+  const comments = useSelector(state => state.comments.current)
   const [ isLoaded, setIsLoaded ] = useState(false)
   const { animeid } = useParams()
   const [ doesExist, setDoesExist ] = useState(false)
@@ -19,6 +23,7 @@ const AnimePage = () => {
 
   useEffect(async() => {
     dispatch(getOneAnime(animeid))
+    dispatch(getting_comments(animeid))
     await dispatch(get_user_list())
     setIsLoaded(true)
   },[dispatch, animeid])
@@ -26,7 +31,7 @@ const AnimePage = () => {
   useEffect(()=> {
     if(isLoaded){
       userList?.forEach(anime => {
-        if (anime.anime.id == Number(animeid)){
+        if (anime.anime.id === Number(animeid)){
           setDoesExist(true)
           setData(anime)
         }
@@ -45,10 +50,18 @@ const AnimePage = () => {
         <p>{currentAni.bio}</p>
       </div>
       {user && isLoaded ?
+      <>
       <ModalThing>
         <ListForm current={currentAni} oldata={doesExist? data:null}/>
       </ModalThing>
+      <PostComment />
+      </>
       : null}
+      {isLoaded ?
+      <Comments comments={comments}/>
+      :
+      null
+      }
     </div>
   )
 }
