@@ -51,7 +51,7 @@ const AnimePage = () => {
       </div>
       {user && isLoaded ?
       <>
-      <ModalThing>
+      <ModalThing name='Add To List'>
         <ListForm current={currentAni} oldata={doesExist? data:null}/>
       </ModalThing>
       <PostComment />

@@ -7,7 +7,7 @@ const ModalThing = (props) => {
   const handleClose = () => setOpen(false);
   return (
     <div>
-      <button onClick={handleOpen}>Open modal</button>
+      <button onClick={handleOpen}>{props.name}</button>
       <Modal
         open={open}
         onClose={handleClose}
