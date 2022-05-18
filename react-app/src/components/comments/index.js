@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { delete_comment, update_comment } from '../../store/comments'
-
+import Popup from 'reactjs-popup';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import './comments.css'
 
 const Comments = ({comments}) => {
   const { animeid } = useParams()
@@ -28,28 +30,34 @@ const Comments = ({comments}) => {
     setEditId(comment.id)
     setIsEditing(true)
   }
+
   return (
-    <div>
+    <div className='posted-comments-box'>
         {
         Array.isArray(comments) ?
         comments.map( comment => {
           return (
-            <div>
+        <div className='comment-box'>
+        <div>
         <div>{comment.poster.username}</div>
         {isEditing && editId === comment.id?
         <form onSubmit={() => sendUpdate(comment)}>
-          <input value={update ? update : comment.content} onChange={e => setUpdate(e.target.value)}/>
+          <textarea value={update ? update : comment.content} onChange={e => setUpdate(e.target.value)}/>
+          <button type='submit'>Update</button>
         </form>
         :
-        <div>{comment.content}</div>
+        <div className='comment-content'>{comment.content}</div>
       }
+      </div>
         <div>
 
           {user.id === comment.poster.id ?
-            <>
-              <div onClick={() => onDelete(comment)}>Delete</div>
-              <div onClick={() => setEdit(comment)}>Update</div>
-            </>
+            <Popup trigger={<MoreVertIcon  />} closeOnDocumentClick position="right top" on='hover'>
+              <div className='comment-buttons'>
+                <div onClick={() => onDelete(comment)}>Delete</div>
+                <div onClick={() => setEdit(comment)}>Update</div>
+              </div>
+            </Popup>
             :
             null
           }
