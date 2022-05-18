@@ -51,14 +51,11 @@ function App() {
         <Route path='/user/:userid/animelist' exact={true}>
           <AnimeList/>
         </Route>
-        <ProtectedRoute path='/home' exact={true}>
-
-        </ProtectedRoute>
-        <Route path={user ? '/home' : '/'} exact={true}>
+        <Route path='/' exact={true}>
           <Splash />
         </Route>
         <Route>
-          <Redirect to='/home' />
+          <Redirect to='/browse/anime' />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -6,9 +6,11 @@ body {
   background-color: #e5ebf1;
   --nav-height: 75px;
   padding-top: var(--nav-height);
+  /* image-rendering: -webkit-optimize-contrast; */
 }
 #root{
   /* display: flex; */
   /* flex-direction: column; */
   box-sizing: border-box;
+  image-rendering: -webkit-optimize-contrast;
 }

@@ -13,8 +13,8 @@ const NavBar = ({user}) => {
         <Svg className='nav-logo'/>
       </NavLink>
         <div className='nav-links'>
-          <NavLink to='/home'>Home</NavLink>
-          <NavLink to={`/user/${user.id}`}>Profile</NavLink>
+          {/* <NavLink to='/home'>Home</NavLink>
+          <NavLink to={`/user/${user.id}`}>Profile</NavLink> */}
           <NavLink to={`/user/${user.id}/animelist`}>Anime List</NavLink>
           <NavLink to={`/browse/anime`}>Browse</NavLink>
         </div>
