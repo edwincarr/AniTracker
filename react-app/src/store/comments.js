@@ -46,6 +46,28 @@ export const posting_comments = (data) => async(dispatch) => {
   }
 }
 
+export const delete_comment = (comment) => async(dispatch) => {
+  const { id, poster} = comment
+  const response = await fetch('/api/comments/', {
+    method:'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      id,
+      poster
+    })
+  })
+  if(response.ok){
+    dispatch(getting_comments(comment.anime.id))
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
+
 
 const initialState = {current:{}}
 export default function comments_reducer(state = initialState, action) {

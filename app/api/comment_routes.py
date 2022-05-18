@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, request
 import requests
 from app.forms.comment_form import CommentForm
@@ -35,3 +36,14 @@ def posting_comment():
     db.session.commit()
     return new_comment.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}
+
+@comment_routes.route('/', methods=['DELETE'])
+def delete_comments():
+  data = request.get_json()
+  print(data, f'\n\n\n\n\n\n\n\n\n\n\n')
+  comment = Comment.query.get(data['id'])
+  if( data['poster']['id'] == current_user.id ):
+    db.session.delete(comment)
+    db.session.commit()
+    return 'success'
+  return 'fail'
