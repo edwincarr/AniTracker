@@ -1,11 +1,7 @@
-from crypt import methods
 from flask import Blueprint, request
-import requests
 from app.forms.comment_form import CommentForm
-from app.models import User, db, Comment
-from app.forms import LoginForm
-from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+from app.models import db, Comment
+from flask_login import current_user
 
 comment_routes = Blueprint('comments', __name__)
 
@@ -32,6 +28,7 @@ def posting_comment():
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     new_comment = Comment(anime_id=form.data['anime_id'], poster_id=current_user.id, content=form.data['content'])
+    print(new_comment)
     db.session.add(new_comment)
     db.session.commit()
     return new_comment.to_dict()

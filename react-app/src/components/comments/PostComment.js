@@ -22,12 +22,12 @@ const PostComment = () => {
 
   return (
     <>
-    <form>
+    <form onSubmit={onSubmit}>
       <input
       value={comment}
       onChange={updateComment}
       />
-      <button onClick={onSubmit}>Submit</button>
+      <button type='submit'>Submit</button>
     </form>
     </>
   )

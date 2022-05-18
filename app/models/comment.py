@@ -5,8 +5,8 @@ class Comment(db.Model):
   __tablename__= 'comments'
 
   id = db.Column(db.Integer, primary_key=True)
-  anime_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-  poster_id = db.Column(db.Integer, db.ForeignKey('animes.id'), nullable=False)
+  anime_id = db.Column(db.Integer, db.ForeignKey('animes.id'), nullable=False)
+  poster_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   content = db.Column(db.String(1000), nullable=False)
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
