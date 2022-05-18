@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.forms.comment_form import CommentForm
+from app.forms.update_comment_form import UpdateCommentForm
 from app.models import db, Comment
 from flask_login import current_user
 
@@ -44,3 +45,15 @@ def delete_comments():
     db.session.commit()
     return 'success'
   return 'fail'
+
+@comment_routes.route('/', methods=['PATCH'])
+def update_comment():
+  form = UpdateCommentForm()
+  data = request.get_json()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    comment = Comment.query.get(data['id'])
+    comment.content = form.data['content']
+    db.session.commit()
+    return comment.to_dict()
+  return {'errors': validation_errors_to_error_messages(form.errors)}

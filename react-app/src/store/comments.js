@@ -68,6 +68,28 @@ export const delete_comment = (comment) => async(dispatch) => {
   }
 }
 
+export const update_comment = (comment) => async(dispatch) => {
+  const {animeid, id, content } = comment
+  const response = await fetch('/api/comments/', {
+    method:'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      id,
+      content
+    })
+  })
+  if(response.ok){
+    dispatch(getting_comments(animeid))
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
+
 
 const initialState = {current:{}}
 export default function comments_reducer(state = initialState, action) {
