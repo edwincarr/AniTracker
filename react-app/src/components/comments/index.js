@@ -39,7 +39,7 @@ const Comments = ({comments}) => {
           return (
         <div className='comment-box'>
         <div>
-        <div>{comment.poster.username}</div>
+        <div className='comment-username'>{comment.poster.username}:</div>
         {isEditing && editId === comment.id?
         <form onSubmit={() => sendUpdate(comment)}>
           <textarea value={update ? update : comment.content} onChange={e => setUpdate(e.target.value)}/>
@@ -52,10 +52,10 @@ const Comments = ({comments}) => {
         <div>
 
           {user.id === comment.poster.id ?
-            <Popup trigger={<MoreVertIcon  />} closeOnDocumentClick position="right top" on='hover'>
+            <Popup trigger={<MoreVertIcon  />} repositionOnResize closeOnDocumentClick={true} position="right top" arrow={false} >
               <div className='comment-buttons'>
-                <div onClick={() => onDelete(comment)}>Delete</div>
-                <div onClick={() => setEdit(comment)}>Update</div>
+                <div className='comment-button' onClick={() => onDelete(comment)}>Delete</div>
+                <div className='comment-button'  onClick={() => setEdit(comment)}>Update</div>
               </div>
             </Popup>
             :

@@ -14,7 +14,7 @@ const Browse = () => {
 
   const nav = document.querySelector('nav')
   const onScroll = () => {
-    if(window.pageYOffset > containerRef?.current?.clientHeight -900){
+    if(window.pageYOffset > containerRef?.current?.clientHeight -1000){
         dispatch(loadingAnime(anime.page))
     }
 

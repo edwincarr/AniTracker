@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.forms.comment_form import CommentForm
 from app.forms.update_comment_form import UpdateCommentForm
 from app.models import db, Comment
+from flask_login import login_required
 from flask_login import current_user
 
 comment_routes = Blueprint('comments', __name__)
@@ -22,6 +23,7 @@ def getting_comments(animeid):
   return {'comments': [comment.to_dict() for comment in comments]}
 
 @comment_routes.route('/', methods=['POST'])
+@login_required
 def posting_comment():
   form = CommentForm()
   data = request.get_json()
@@ -34,6 +36,7 @@ def posting_comment():
   return {'errors': validation_errors_to_error_messages(form.errors)}
 
 @comment_routes.route('/', methods=['DELETE'])
+@login_required
 def delete_comments():
   data = request.get_json()
   comment = Comment.query.get(data['id'])
@@ -44,6 +47,7 @@ def delete_comments():
   return 'fail'
 
 @comment_routes.route('/', methods=['PATCH'])
+@login_required
 def update_comment():
   form = UpdateCommentForm()
   data = request.get_json()
