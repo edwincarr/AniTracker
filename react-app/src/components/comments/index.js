@@ -42,7 +42,7 @@ const Comments = ({comments}) => {
         <div className='comment-username'>{comment.poster.username}:</div>
         {isEditing && editId === comment.id?
         <form onSubmit={() => sendUpdate(comment)}>
-          <textarea value={update ? update : comment.content} onChange={e => setUpdate(e.target.value)}/>
+          <textarea value={typeof update == "string" ? update : comment.content} onChange={e => setUpdate(e.target.value)}/>
           <button type='submit'>Update</button>
         </form>
         :
