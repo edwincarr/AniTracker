@@ -9,6 +9,7 @@ const Comments = ({comments}) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
   const [ isEditing, setIsEditing ] = useState(false)
+  const [ editId, setEditId ] = useState()
   const [ update, setUpdate ] = useState()
   const onDelete = (comment) => {
     dispatch(delete_comment(comment))
@@ -23,16 +24,19 @@ const Comments = ({comments}) => {
     dispatch(update_comment(data))
     setIsEditing(false)
   }
-  const setEdit = () => {
+  const setEdit = (comment) => {
+    setEditId(comment.id)
     setIsEditing(true)
   }
   return (
     <div>
-    {comments.map( comment => {
-      return (
-      <div>
+        {
+        Array.isArray(comments) ?
+        comments.map( comment => {
+          return (
+            <div>
         <div>{comment.poster.username}</div>
-        {isEditing ?
+        {isEditing && editId === comment.id?
         <form onSubmit={() => sendUpdate(comment)}>
           <input value={update ? update : comment.content} onChange={e => setUpdate(e.target.value)}/>
         </form>
@@ -44,7 +48,7 @@ const Comments = ({comments}) => {
           {user.id === comment.poster.id ?
             <>
               <div onClick={() => onDelete(comment)}>Delete</div>
-              <div onClick={setEdit}>Update</div>
+              <div onClick={() => setEdit(comment)}>Update</div>
             </>
             :
             null
@@ -53,8 +57,8 @@ const Comments = ({comments}) => {
         </div>
       </div>
       )
-    })}
-  </div>
-  )
+    }): null}
+    </div>
+    )
 }
 export default Comments

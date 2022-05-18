@@ -40,29 +40,34 @@ const AnimePage = () => {
   },[isLoaded])
 
   return (
-    <div>
-      <div>
+    <>
+    <div className="page-container">
+      <div className="anime-cover">
         <img src={currentAni.cover} height='300' alt={currentAni.name}/>
+        {user && isLoaded ?
+          <ModalThing name='Add To List'>
+            <ListForm current={currentAni} oldata={doesExist? data:null}/>
+          </ModalThing>
+        :
+            null
+        }
         <p>{currentAni.name}</p>
         <p>{currentAni.episodes} episodes</p>
       </div>
-      <div>
+      <div className="anime-bio">
         <p>{currentAni.bio}</p>
       </div>
+    </div>
+    <div className="comment-area">
       {user && isLoaded ?
       <>
-      <ModalThing name='Add To List'>
-        <ListForm current={currentAni} oldata={doesExist? data:null}/>
-      </ModalThing>
       <PostComment />
+      <Comments comments={comments}/>
       </>
       : null}
-      {isLoaded ?
-      <Comments comments={comments}/>
-      :
-      null
-      }
     </div>
+    </>
+
   )
 }
 

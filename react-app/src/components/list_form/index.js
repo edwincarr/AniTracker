@@ -45,17 +45,28 @@ const ListForm = ({current, oldata}) => {
   return (
     <div className='form'>
       <form onSubmit={(e) => onSubmit(e)}>
-        <select value={status} onChange={updateStatus}>
-          <option value={0}>Planning</option>
-          <option value={1}>Watching</option>
-          <option value={2}>Completed</option>
-          <option value={3}>Paused</option>
-          <option value={4}>Dropped</option>
-        </select>
-        <input placeholder='Score' onChange={updateScore} value={score} type='number' max='10' min='0'/>
-        <input placeholder='Progress' onChange={updateProgress} value={progress} type='number' min='0' max={current.episodes}/>
-        <button type='submit'>Save</button>
+        <div>
+          <label for='status'>Status</label>
+          <select value={status} name='status' onChange={updateStatus}>
+            <option value={0}>Planning</option>
+            <option value={1}>Watching</option>
+            <option value={2}>Completed</option>
+            <option value={3}>Paused</option>
+            <option value={4}>Dropped</option>
+          </select>
+        </div>
+        <div>
+        <label for='score'>Score</label>
+        <input name='score' placeholder='Score' onChange={updateScore} value={score} type='number' max='10' min='0'/>
+        </div>
+        <div>
+        <label for='progress'>Episode</label>
+        <input name='progress' placeholder='Progress' onChange={updateProgress} value={progress} type='number' min='0' max={current.episodes}/>
+        </div>
+        <div>
         {oldata ? <div onClick={onDelete}>delete</div> : null}
+        <button type='submit'>Save</button>
+        </div>
       </form>
     </div>
   )

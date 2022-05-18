@@ -1,10 +1,13 @@
 .form {
-  height: 100px;
-  width: 100px;
+  height: 500px;
+  width: 700px;
   background-color: white;
 }
 .modalThing {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.form label {
+  font-size: large;
 }

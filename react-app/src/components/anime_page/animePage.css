@@ -1,0 +1,32 @@
+.page-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-left: -150px;
+}
+.anime-cover {
+  align-self: flex-start;
+  margin-top: 50px;
+}
+.anime-cover img {
+  box-shadow: 0px 0px 10px #a8a8a8;
+}
+.anime-cover p {
+  text-transform: capitalize;
+  margin: 5px;
+}
+.anime-bio {
+  max-width: 900px;
+  min-width: 700px;
+  margin-top: 100px;
+  font-size: large;
+}
+.comment-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
