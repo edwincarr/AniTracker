@@ -19,7 +19,6 @@ def validation_errors_to_error_messages(validation_errors):
 @comment_routes.route('/<int:animeid>')
 def getting_comments(animeid):
   comments = Comment.query.filter(Comment.anime_id == animeid).order_by(Comment.created_at.desc()).all()
-  print(comments)
   return {'comments': [comment.to_dict() for comment in comments]}
 
 @comment_routes.route('/', methods=['POST'])
@@ -29,7 +28,6 @@ def posting_comment():
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     new_comment = Comment(anime_id=form.data['anime_id'], poster_id=current_user.id, content=form.data['content'])
-    print(new_comment)
     db.session.add(new_comment)
     db.session.commit()
     return new_comment.to_dict()
@@ -38,7 +36,6 @@ def posting_comment():
 @comment_routes.route('/', methods=['DELETE'])
 def delete_comments():
   data = request.get_json()
-  print(data, f'\n\n\n\n\n\n\n\n\n\n\n')
   comment = Comment.query.get(data['id'])
   if( data['poster']['id'] == current_user.id ):
     db.session.delete(comment)
