@@ -65,7 +65,7 @@ const ListForm = ({current, oldata}) => {
         </div>
         <div>
         {oldata ? <div onClick={onDelete}>delete</div> : null}
-        <button type='submit'>Save</button>
+        <button type='submit'>{oldata ? 'Update' : 'Save'}</button>
         </div>
       </form>
     </div>

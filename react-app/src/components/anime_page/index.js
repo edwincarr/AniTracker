@@ -45,7 +45,7 @@ const AnimePage = () => {
       <div className="anime-cover">
         <img src={currentAni.cover} height='300' alt={currentAni.name}/>
         {user && isLoaded ?
-          <ModalThing name='Add To List'>
+          <ModalThing name={doesExist ? 'Update' : 'Add To List'}>
             <ListForm current={currentAni} oldata={doesExist? data:null}/>
           </ModalThing>
         :
