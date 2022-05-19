@@ -31,6 +31,3 @@
   color:#3480eb;
 }
 
-.nav--hidden {
-  transform: translateY(calc(-1 * var(--nav-height)));
-}

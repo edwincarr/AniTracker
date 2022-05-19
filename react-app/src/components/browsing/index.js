@@ -10,20 +10,10 @@ const Browse = () => {
   const dispatch = useDispatch()
   const anime = useSelector(state => state.anime)
 
-  let lastScrollY = window.scrollY
-
-  const nav = document.querySelector('nav')
   const onScroll = () => {
     if(window.pageYOffset > containerRef?.current?.clientHeight -1000){
         dispatch(loadingAnime(anime.page))
     }
-
-    if(lastScrollY < window.scrollY){
-      nav.classList.add('nav--hidden')
-    } else {
-      nav.classList.remove('nav--hidden')
-    }
-    lastScrollY = window.scrollY
   }
 
   const scrollEvent = throttle(onScroll, 200)
