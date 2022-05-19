@@ -33,7 +33,7 @@ const ListTable = ({list, status}) => {
   const onClick = (id) => {
     history.push(`/anime/${id}`)
   }
-  
+
   useEffect(() => {
     modalRef?.current?.close()
   },[list])
@@ -62,7 +62,7 @@ const ListTable = ({list, status}) => {
                 <p>{anime.score ? anime.score: 0}</p>
                 {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
             </div>
-            } position="center center" modal ref={modalRef}><ListForm current={anime} oldata={anime}/></Popup>
+            } position="center center" modal ref={modalRef}><ListForm current={anime['current']} oldata={anime}/></Popup>
             :
             <div key={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
             <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>

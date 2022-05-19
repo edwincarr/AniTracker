@@ -23,7 +23,6 @@ const ListForm = ({current, oldata}) => {
       animeid : current.id
     }
     if(oldata){
-      data.animeid = current.anime.id
       await dispatch(update_list_row(data, userid))
     }else{
       await dispatch(create_list_row(data))
@@ -42,6 +41,7 @@ const ListForm = ({current, oldata}) => {
   }
   const onDelete = () => {
     dispatch(delete_list_row(oldata.id, userid))
+    history.push(`/user/${user.id}/animelist`)
   }
 
   return (
