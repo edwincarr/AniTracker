@@ -5,21 +5,26 @@ import { posting_comments } from "../../store/comments"
 
 const PostComment = () => {
   const { animeid } = useParams()
+  const [errors, setErrors] = useState([]);
   const [ comment, setComment ] = useState('')
   const dispatch = useDispatch()
   const updateComment = (e) => {
     setComment(e.target.value)
   }
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault()
     const data = {
       anime_id: animeid,
       content: comment
     }
-    dispatch(posting_comments(data))
-    setComment('')
+    const res = await dispatch(posting_comments(data))
+    if(res){
+      setErrors(res)
+    }else{
+      setComment('')
+    }
   }
-
+  console.log(errors)
   return (
     <>
     <form onSubmit={onSubmit}>
@@ -30,6 +35,11 @@ const PostComment = () => {
       />
       <button type='submit'>Submit</button>
     </form>
+      <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+            ))}
+        </div>
     </>
   )
 }

@@ -34,7 +34,7 @@ def posting_comment():
     db.session.add(new_comment)
     db.session.commit()
     return new_comment.to_dict()
-  return {'errors': validation_errors_to_error_messages(form.errors)}
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @comment_routes.route('/', methods=['DELETE'])
 @login_required
