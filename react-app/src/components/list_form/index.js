@@ -14,7 +14,7 @@ const ListForm = ({current, oldata}) => {
   const [score, setScore] = useState(oldata?.score ? oldata.score : 0);
   const [progress, setProgress] = useState(oldata?.progress ? oldata.progress : 0)
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault()
     const data = {
       status,
@@ -24,9 +24,9 @@ const ListForm = ({current, oldata}) => {
     }
     if(oldata){
       data.animeid = current.anime.id
-      dispatch(update_list_row(data, userid))
+      await dispatch(update_list_row(data, userid))
     }else{
-      dispatch(create_list_row(data))
+      await dispatch(create_list_row(data))
     }
     history.push(`/user/${user.id}/animelist`)
   }

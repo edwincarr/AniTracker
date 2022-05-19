@@ -20,7 +20,6 @@ export const loadingAnime = (page) => async(dispatch) => {
   const response = await fetch(`/api/anime/browse/${page}`)
   let data = await response.json()
   dispatch(loadAnime(data['anime']))
-  // return data
 }
 
 export const clearState = () => async(dispatch) => {
