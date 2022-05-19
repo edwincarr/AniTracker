@@ -58,7 +58,7 @@ export const create_list_row = (data) => async(dispatch) => {
   }
 }
 
-export const update_list_row = (data) => async(dispatch) => {
+export const update_list_row = (data, userid) => async(dispatch) => {
   const { progress, status, score, animeid } = data
   const response = await fetch(`/api/lists/`, {
     method: 'PATCH',
@@ -72,9 +72,12 @@ export const update_list_row = (data) => async(dispatch) => {
       animeid
     })
   })
+  if(response.ok){
+    dispatch(get_curr_list(userid))
+  }
 }
 
-export const delete_list_row = (data) => async(dispatch) => {
+export const delete_list_row = (data, userid) => async(dispatch) => {
   const response = await fetch(`/api/lists/`, {
     method:'DELETE',
     headers: {'Content-Type': 'application/json'},
@@ -82,6 +85,9 @@ export const delete_list_row = (data) => async(dispatch) => {
       data
     })
   })
+  if(response.ok){
+    dispatch(get_curr_list(userid))
+  }
 }
 
 

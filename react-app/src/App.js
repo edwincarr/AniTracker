@@ -51,9 +51,15 @@ function App() {
         <Route path='/user/:userid/animelist' exact={true}>
           <AnimeList/>
         </Route>
+        {user ?
+        <Route>
+          <Redirect to='/browse/anime' />
+        </Route>
+        :
         <Route path='/' exact={true}>
           <Splash />
         </Route>
+        }
         <Route>
           <Redirect to='/browse/anime' />
         </Route>

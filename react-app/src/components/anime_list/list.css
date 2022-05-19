@@ -57,3 +57,6 @@ font-weight: 500;
   border-radius: 5px;
   width: 52px;
 }
+.popup-overlay {
+  background: rgba(10,10,10,.1);
+}

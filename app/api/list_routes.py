@@ -51,7 +51,7 @@ def updateStatusStuff():
   data = request.get_json()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    old_row = User_List.query.join(User).filter(User_List.user_id == current_user.id, User_List.anime_id == form.data['animeid']).one()
+    old_row = User_List.query.filter(User_List.user_id == current_user.id, User_List.anime_id == form.data['animeid']).one()
     anime = Anime.query.get(form.data['animeid'])
     old_row.progress = form.data['progress']
     old_row.status = form.data['status']

@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import './anime_form.css'
 import { create_list_row, delete_list_row, update_list_row } from '../../store/user_list'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 const ListForm = ({current, oldata}) => {
   const dispatch = useDispatch()
+  const {userid} = useParams()
   const user = useSelector(state => state.session.user)
   const history = useHistory()
   const [errors, setErrors] = useState([]);
@@ -22,7 +23,8 @@ const ListForm = ({current, oldata}) => {
       animeid : current.id
     }
     if(oldata){
-      dispatch(update_list_row(data))
+      data.animeid = current.anime.id
+      dispatch(update_list_row(data, userid))
     }else{
       dispatch(create_list_row(data))
     }
@@ -39,7 +41,7 @@ const ListForm = ({current, oldata}) => {
     setProgress(Number(e.target.value))
   }
   const onDelete = () => {
-    dispatch(delete_list_row(oldata.id))
+    dispatch(delete_list_row(oldata.id, userid))
   }
 
   return (
@@ -64,7 +66,7 @@ const ListForm = ({current, oldata}) => {
         <input name='progress' placeholder='Progress' onChange={updateProgress} value={progress} type='number' min='0' max={current.episodes}/>
         </div>
         <div>
-        {oldata ? <div onClick={onDelete}>delete</div> : null}
+        {oldata ? <div onClick={onDelete}>Delete</div> : null}
         <button type='submit'>{oldata ? 'Update' : 'Save'}</button>
         </div>
       </form>

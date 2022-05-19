@@ -1,8 +1,17 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Popup from 'reactjs-popup';
+import ListForm from '../list_form';
 import './list.css'
+import { get_curr_list } from '../../store/user_list';
+import { useEffect, useRef, useState } from 'react';
 
 const ListTable = ({list, status}) => {
+  const user = useSelector(state => state.session.user)
+  const { userid } = useParams()
   const history = useHistory()
+  const modalRef = useRef()
+
   let header
   const headerFunc = () => {
     switch(status){
@@ -21,10 +30,13 @@ const ListTable = ({list, status}) => {
     }
   }
   headerFunc()
-
   const onClick = (id) => {
     history.push(`/anime/${id}`)
   }
+  
+  useEffect(() => {
+    modalRef?.current?.close()
+  },[list])
 
   return (
     <>
@@ -42,6 +54,16 @@ const ListTable = ({list, status}) => {
             return null;
           }
           return (
+            user.id == userid ?
+              <Popup trigger={
+                <div key={idx} className='row-entry' >
+                <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>
+                <p className='title-n-row'>{anime.anime.name}</p>
+                <p>{anime.score ? anime.score: 0}</p>
+                {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
+            </div>
+            } position="center center" modal ref={modalRef}><ListForm current={anime} oldata={anime}/></Popup>
+            :
             <div key={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
             <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>
             <p className='title-n-row'>{anime.anime.name}</p>
@@ -49,7 +71,8 @@ const ListTable = ({list, status}) => {
             {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
             </div>
             )
-          }) : null}
+          })
+          : null}
           </div>
         </div>
       </>
