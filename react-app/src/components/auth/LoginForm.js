@@ -31,6 +31,10 @@ const LoginForm = () => {
     return <Redirect to='/home' />;
   }
 
+  const demo = () => {
+    dispatch(login('demo@aa.io', 'password'))
+  }
+
   return (
     <div className='form-bg'>
 
@@ -60,6 +64,7 @@ const LoginForm = () => {
           />
       </div>
         <button type='submit'>Login</button>
+        <button onClick={demo}>Demo</button>
     </form>
           </div>
   );

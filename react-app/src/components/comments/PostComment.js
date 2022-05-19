@@ -26,6 +26,7 @@ const PostComment = () => {
       <input
       value={comment}
       onChange={updateComment}
+      placeholder='Add a Comment'
       />
       <button type='submit'>Submit</button>
     </form>

@@ -45,9 +45,9 @@ function App() {
         <Route path='/anime/:animeid'>
           <AnimePage />
         </Route>
-        <Route path='/user/:userid' exact={true}>
+        {/* <Route path='/user/:userid' exact={true}>
           <ProfilePage />
-        </Route>
+        </Route> */}
         <Route path='/user/:userid/animelist' exact={true}>
           <AnimeList/>
         </Route>

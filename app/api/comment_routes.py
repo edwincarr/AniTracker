@@ -18,6 +18,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 @comment_routes.route('/<int:animeid>')
+@login_required
 def getting_comments(animeid):
   comments = Comment.query.filter(Comment.anime_id == animeid).order_by(Comment.created_at.desc()).all()
   return {'comments': [comment.to_dict() for comment in comments]}
