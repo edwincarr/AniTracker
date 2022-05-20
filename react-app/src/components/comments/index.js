@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { delete_comment, update_comment } from '../../store/comments'
 import Popup from 'reactjs-popup';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { TextField } from "@mui/material"
 import './comments.css'
 
 const Comments = ({comments}) => {
@@ -41,9 +42,9 @@ const Comments = ({comments}) => {
         <div>
         <div className='comment-username'>{comment.poster.username}:</div>
         {isEditing && editId === comment.id?
-        <form onSubmit={() => sendUpdate(comment)}>
-          <textarea value={typeof update == "string" ? update : comment.content} onChange={e => setUpdate(e.target.value)}/>
-          <button type='submit'>Update</button>
+        <form className='update-comment-box' onSubmit={() => sendUpdate(comment)}>
+          <TextField label='update' value={typeof update == "string" ? update : comment.content} onChange={e => setUpdate(e.target.value)} style= {{width:450}}/>
+          <button className='comment-bttn' type='submit'>Update</button>
         </form>
         :
         <div className='comment-content'>{comment.content}</div>
