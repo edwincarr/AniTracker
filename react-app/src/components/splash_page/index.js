@@ -1,5 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import './splash.css'
+import { ReactComponent as Github} from './footer-icons/github.svg'
+import { ReactComponent as Linkedin} from './footer-icons/linkedin.svg'
 
 const Splash = () => {
   const history = useHistory()
@@ -8,6 +10,7 @@ const Splash = () => {
     history.push(`/signup`)
   }
   return (
+    <>
     <div className='splash-body'>
       <div className='splash-container'>
         <div className='splash-text'>
@@ -46,7 +49,29 @@ const Splash = () => {
         </div>
         <div className='splash-button' onClick={onClick}>Join Now</div>
       </div>
+    <div className='footer-tech'>
+      <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&amp;logo=javascript&amp;logoColor=%23F7DF1E"/>
+      <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&amp;logo=python&amp;logoColor=ffdd54"/>
+      <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&amp;logo=react&amp;logoColor=%2361DAFB"/>
+      <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&amp;logo=css3&amp;logoColor=white"/>
+      <img src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&amp;logo=redux&amp;logoColor=white"/>
+      <img src="https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&amp;logo=heroku&amp;logoColor=white"/>
+      <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&amp;logo=postgresql&amp;logoColor=white"/>
+      <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&amp;logo=html5&amp;logoColor=white"/>
+      <img src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&amp;logo=flask&amp;logoColor=white"/>
+      <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&amp;logo=docker&amp;logoColor=white"/>
+      <img src="https://img.shields.io/badge/Socket.io-black?style=for-the-badge&amp;logo=socket.io&amp;badgeColor=010101"/>
     </div>
+    <footer>
+      <a href="https://github.com/edwincarr" target="_blank" >
+        <Github />
+      </a>
+      <a href='https://www.linkedin.com/in/edwincarr/' target="_blank">
+        <Linkedin/>
+      </a>
+    </footer>
+    </div>
+    </>
   )
 }
 export default Splash
