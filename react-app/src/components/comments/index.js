@@ -9,29 +9,42 @@ import './comments.css'
 
 const Comments = ({comments}) => {
   const { animeid } = useParams()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState(false)
   const user = useSelector(state => state.session.user)
   const [ isEditing, setIsEditing ] = useState(false)
   const [ editId, setEditId ] = useState()
   const [ update, setUpdate ] = useState()
+
   const onDelete = (comment) => {
     dispatch(delete_comment(comment))
   }
 
-  const sendUpdate = (comment) => {
+  const sendUpdate = async(e, comment) => {
+    e.preventDefault()
     const data = {
       animeid,
       id: comment.id,
       content: update
     }
-    dispatch(update_comment(data))
-    setIsEditing(false)
+    const res = await dispatch(update_comment(data))
+    if(res){
+      setErrors(res)
+      setError(true)
+    }else{
+      setIsEditing(false)
+    }
   }
   const setEdit = (comment) => {
     setEditId(comment.id)
     setIsEditing(true)
   }
-
+  const updateComment = (e) => {
+    setUpdate(e.target.value)
+    setErrors([])
+    setError(false)
+  }
   return (
     <div className='posted-comments-box'>
         {
@@ -42,10 +55,17 @@ const Comments = ({comments}) => {
         <div>
         <div className='comment-username'>{comment.poster.username}:</div>
         {isEditing && editId === comment.id?
-        <form className='update-comment-box' onSubmit={() => sendUpdate(comment)}>
-          <TextField label='update' value={typeof update == "string" ? update : comment.content} onChange={e => setUpdate(e.target.value)} style= {{width:450}}/>
+        <>
+        <form className='update-comment-box' onSubmit={(e) => sendUpdate(e, comment)}>
+          <TextField label='update' value={typeof update == "string" ? update : comment.content} onChange={e => updateComment(e)} style= {{width:450}} error={error}/>
           <button className='comment-bttn' type='submit'>Update</button>
         </form>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+            ))}
+        </div>
+        </>
         :
         <div className='comment-content'>{comment.content}</div>
       }
@@ -53,10 +73,10 @@ const Comments = ({comments}) => {
         <div>
 
           {user.id === comment.poster.id ?
-            <Popup trigger={<MoreVertIcon  />} repositionOnResize closeOnDocumentClick={true} position="right top" arrow={false} >
+            <Popup trigger={<MoreVertIcon  />} closeOnDocumentClick position="right top" arrow={false} >
               <div className='comment-buttons'>
                 <div className='comment-button' onClick={() => onDelete(comment)}>Delete</div>
-                <div className='comment-button'  onClick={() => setEdit(comment)}>Update</div>
+                <div className='comment-button' onClick={(e) => setEdit(comment)}>Update</div>
               </div>
             </Popup>
             :

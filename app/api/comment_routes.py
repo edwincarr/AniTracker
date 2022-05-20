@@ -58,4 +58,4 @@ def update_comment():
     comment.content = form.data['content']
     db.session.commit()
     return comment.to_dict()
-  return {'errors': validation_errors_to_error_messages(form.errors)}
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
