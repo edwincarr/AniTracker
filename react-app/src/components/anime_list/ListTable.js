@@ -1,16 +1,12 @@
-import { useHistory, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import Popup from 'reactjs-popup';
-import ListForm from '../list_form';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './list.css'
-import { get_curr_list } from '../../store/user_list';
-import { useEffect, useRef, useState } from 'react';
 
-const ListTable = ({list, status}) => {
+
+const ListTable = ({status}) => {
   const user = useSelector(state => state.session.user)
-  const { userid } = useParams()
+  const list = useSelector(state => state.list.current)
   const history = useHistory()
-  const modalRef = useRef()
 
   let header
   const headerFunc = () => {
@@ -34,11 +30,8 @@ const ListTable = ({list, status}) => {
     history.push(`/anime/${id}`)
   }
 
-  useEffect(() => {
-    modalRef?.current?.close()
-  },[list])
+  return ( list ?
 
-  return (
     <>
     {header}
     <div className='list-container'>
@@ -49,21 +42,11 @@ const ListTable = ({list, status}) => {
         <div className="list-progress">Progress</div>
         </div>
         <div className="list-entries">
-        {list.length ? list?.map((anime, idx) => {
+        {Array.isArray(list) ? list.map((anime, idx) => {
           if(status !== anime.status){
             return null;
           }
           return (
-            user.id == userid ?
-              <Popup trigger={
-                <div key={idx} className='row-entry' >
-                <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>
-                <p className='title-n-row'>{anime.anime.name}</p>
-                <p>{anime.score ? anime.score: 0}</p>
-                {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
-            </div>
-            } position="center center" modal ref={modalRef}><ListForm current={anime['anime']} oldata={anime}/></Popup>
-            :
             <div key={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
             <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>
             <p className='title-n-row'>{anime.anime.name}</p>
@@ -72,10 +55,12 @@ const ListTable = ({list, status}) => {
             </div>
             )
           })
-          : null}
+          : null
+        }
           </div>
         </div>
       </>
+      : null
   )
 }
 export default ListTable

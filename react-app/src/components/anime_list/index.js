@@ -13,7 +13,7 @@ const AnimeList = () => {
 
   useEffect(()=> {
     dispatch(get_curr_list(userid))
-  }, [userid])
+  }, [])
 
   return (
     <>
