@@ -45,9 +45,13 @@ const ListForm = ({current, oldata}) => {
   console.log(current)
   return (
     <div className='form'>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <label for='status'>Status</label>
+      <div className='modal-info'>
+        <img src={current.cover} height='100px'/>
+        <h2>{current.name}</h2>
+      </div>
+      <form className='actual-form' onSubmit={(e) => onSubmit(e)}>
+        <div className='modal-grouping'>
+          <label forHTML='status'>Watch Status : </label>
           <select value={status} name='status' onChange={updateStatus}>
             <option value={0}>Planning</option>
             <option value={1}>Watching</option>
@@ -56,17 +60,17 @@ const ListForm = ({current, oldata}) => {
             <option value={4}>Dropped</option>
           </select>
         </div>
-        <div>
-        <label for='score'>Score</label>
+        <div className='modal-grouping'>
+        <label forHTML='score'>Score / 10 : </label>
         <input name='score' placeholder='Score' onChange={updateScore} value={score} type='number' max='10' min='0'/>
         </div>
-        <div>
-        <label for='progress'>Episode</label>
+        <div className='modal-grouping'>
+        <label forHTML='progress'>Episode Progress / {current.episodes} : </label>
         <input name='progress' placeholder='Progress' onChange={updateProgress} value={progress} type='number' min='0' max={current.episodes}/>
         </div>
-        <div>
-        {oldata ? <div onClick={onDelete}>Delete</div> : null}
-        <button type='submit'>{oldata ? 'Update' : 'Save'}</button>
+        <div className='modal-form-buttons'>
+        {oldata ? <div className='modal-form-delete' onClick={onDelete}>Delete</div> : null}
+        <button className='modal-form-uors' type='submit'>{oldata ? 'Update' : 'Save'}</button>
         </div>
       </form>
     </div>

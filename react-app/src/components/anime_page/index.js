@@ -51,10 +51,10 @@ const AnimePage = () => {
         :
             null
         }
-        <p>{currentAni.name}</p>
-        <p>{currentAni.episodes} episodes</p>
+        {currentAni.episodes == 1 ? <p>1 Episode</p> : <p>{currentAni.episodes} Episodes</p>}
       </div>
       <div className="anime-bio">
+        <h1>{currentAni.name}</h1>
         <p>{currentAni.bio}</p>
       </div>
     </div>

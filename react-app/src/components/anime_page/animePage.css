@@ -30,3 +30,6 @@
   justify-content: center;
   margin-top: 100px;
 }
+.anime-bio h1 {
+  max-width: 698px;
+}
