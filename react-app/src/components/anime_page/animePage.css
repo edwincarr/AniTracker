@@ -32,4 +32,5 @@
 }
 .anime-bio h1 {
   max-width: 698px;
+  text-transform: capitalize;
 }
