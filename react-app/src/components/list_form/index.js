@@ -9,7 +9,6 @@ const ListForm = ({current, oldata}) => {
   const {userid} = useParams()
   const user = useSelector(state => state.session.user)
   const history = useHistory()
-  const [errors, setErrors] = useState([]);
   const [status, setStatus] = useState(oldata?.status ? oldata.status : 0);
   const [score, setScore] = useState(oldata?.score ? oldata.score : 0);
   const [progress, setProgress] = useState(oldata?.progress ? oldata.progress : 0)
@@ -43,7 +42,7 @@ const ListForm = ({current, oldata}) => {
     dispatch(delete_list_row(oldata.id, userid))
     history.push(`/user/${user.id}/animelist`)
   }
-
+  console.log(current)
   return (
     <div className='form'>
       <form onSubmit={(e) => onSubmit(e)}>

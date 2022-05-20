@@ -24,7 +24,6 @@ const PostComment = () => {
       setComment('')
     }
   }
-  console.log(errors)
   return (
     <>
     <form onSubmit={onSubmit}>
