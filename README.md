@@ -60,7 +60,7 @@
 ### API
 
 <img src="https://play-lh.googleusercontent.com/fJbHIg6QrqzVD18nUvHXDHA-l3X9FVz5qUNhESnKKRdCspaUnXt4L83eD7nnWZZyzw" height=40/>
-<a href="https://play-lh.googleusercontent.com/fJbHIg6QrqzVD18nUvHXDHA-l3X9FVz5qUNhESnKKRdCspaUnXt4L83eD7nnWZZyzw">Kistsu Anime API</a>
+<a href="https://kitsu.docs.apiary.io/#">Kistsu Anime API</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
