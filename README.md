@@ -71,50 +71,57 @@
 
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/edwincarr/solo-project
+   git clone git@github.com:edwincarr/AniTracker.git
    ```
-2. Install NPM packages
+   
+2. Install Dependencies in the root folder
+   ```sh
+   pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+   ```
+   
+3. Install NPM packages inside of the react-app folder
    ```sh
    npm install
    ```
-3. Create a PSQL user with CREATEDB PASSWORD
+   
+4. Create a PSQL user with CREATEDB PASSWORD
    ```js
    CREATE USER <name> WITH CREATEDB PASSWORD <'password'>;
    ```
    
-4. Create a .env file to access the backend based on the .env.example within the respective directory
+5. Create a PSQL Database with the user in the last step as the owner
+   ```js
+   CREATE DATABASE <name> WITH OWNER <user>;
+   ```
+6. Create a .env file to access the backend based on the .env.example within the respective directory
       - input desired information into .env
 
+7. Get into Pipenv
+   ```sh
+   pipenv shell
+   ```
 
-5. Create Database, Migrate, and Seed models.
+8. Migrate and seed models.
    ```sh
-   npx dotenv sequelize db:create
-   npx dotenv sequelize db:migrate
-   npx dotenv sequelize db:seed:all
+   flask db upgrade
+   flask seed all
    ```
    
-6. Start the backend in the backend directory
+9. Start the backend in the backend directory
    ```sh
-   npm start
+   flask run
    ```
    
-8. Start the frontend in the frontend directory, this should open the project in your default browser. If not, navigate to http://localhost:3000
-   ```sh
-   npm start
-   ```
+10. Start the frontend in the frontend directory, this should open the project in your default browser. If not, navigate to http://localhost:3000
+    ```sh
+    npm start
+    ```
    
-9. From here you can create and sign in as a user and begin using TBD NAME
+11. From here you can create and sign in as a user and begin using Ani-Tracker
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
