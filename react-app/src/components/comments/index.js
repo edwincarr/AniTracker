@@ -45,6 +45,10 @@ const Comments = ({comments}) => {
     setErrors([])
     setError(false)
   }
+  const cancel = (e) => {
+    e.preventDefault()
+    setIsEditing(false)
+  }
   return (
     <div className='posted-comments-box'>
         {
@@ -58,7 +62,10 @@ const Comments = ({comments}) => {
         <>
         <form className='update-comment-box' onSubmit={(e) => sendUpdate(e, comment)}>
           <TextField label='update' value={typeof update == "string" ? update : comment.content} onChange={e => updateComment(e)} style= {{width:450}} error={error}/>
+          <div className='edit-bttns'>
           <button className='comment-bttn' type='submit'>Update</button>
+          <button className='comment-bttn cancel-bttn' onClick={(e) => cancel(e)}>Cancel</button>
+          </div>
         </form>
         <div>
           {errors.map((error, ind) => (

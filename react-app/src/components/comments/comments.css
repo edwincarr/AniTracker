@@ -57,3 +57,16 @@
   gap: 10px;
   align-items: center;
 }
+.cancel-bttn {
+  background-color: #ec5d57;
+  padding: 5px 10px;
+}
+.edit-bttns .comment-bttn {
+  padding: 5px 10px;
+}
+.edit-bttns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
