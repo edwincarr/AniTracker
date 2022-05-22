@@ -59,12 +59,17 @@ const AnimePage = () => {
       </div>
     </div>
     <div className="comment-area">
+      <h1>Comments Section :</h1>
       {user && isLoaded ?
       <>
       <PostComment />
       <Comments comments={comments}/>
       </>
-      : null}
+      :
+      <>
+      <h2 className="X-logged-cmnts">Sign Up or Login to view what others are saying...</h2>
+      </>
+      }
     </div>
     </>
 
