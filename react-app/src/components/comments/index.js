@@ -17,8 +17,9 @@ const Comments = ({comments}) => {
   const [ editId, setEditId ] = useState()
   const [ update, setUpdate ] = useState()
 
-  const onDelete = (comment) => {
+  const onDelete = (comment, close) => {
     dispatch(delete_comment(comment))
+    close()
   }
 
   const sendUpdate = async(e, comment) => {
@@ -36,9 +37,10 @@ const Comments = ({comments}) => {
       setIsEditing(false)
     }
   }
-  const setEdit = (comment) => {
+  const setEdit = (comment, close) => {
     setEditId(comment.id)
     setIsEditing(true)
+    close()
   }
   const updateComment = (e) => {
     setUpdate(e.target.value)
@@ -81,10 +83,12 @@ const Comments = ({comments}) => {
 
           {user.id === comment.poster.id ?
             <Popup trigger={<MoreVertIcon  />} closeOnDocumentClick position="right top" arrow={false} >
-              <div className='comment-buttons'>
-                <div className='comment-button' onClick={() => onDelete(comment)}>Delete</div>
-                <div className='comment-button' onClick={(e) => setEdit(comment)}>Update</div>
+              {close => (
+                <div className='comment-buttons'>
+                <div className='comment-button' onClick={() => onDelete(comment, close)}>Delete</div>
+                <div className='comment-button' onClick={(e) => setEdit(comment, close)}>Update</div>
               </div>
+                )}
             </Popup>
             :
             null
