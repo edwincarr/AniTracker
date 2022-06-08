@@ -46,7 +46,7 @@ const ListForm = ({current, oldata}) => {
   return (
     <div className='form'>
       <div className='modal-info'>
-        <img src={current.cover} height='100px'/>
+        <img src={current.cover} height='100px' alt={`${current.name}`}/>
         <h2>{current.name}</h2>
       </div>
       <form className='actual-form' onSubmit={(e) => onSubmit(e)}>

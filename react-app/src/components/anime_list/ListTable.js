@@ -4,7 +4,6 @@ import './list.css'
 
 
 const ListTable = ({status}) => {
-  const user = useSelector(state => state.session.user)
   const list = useSelector(state => state.list.current)
   const history = useHistory()
 
