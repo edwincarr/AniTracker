@@ -1,15 +1,7 @@
 const GET_COMMENTS = 'comments/GET_COMMENTS'
-const POST_COMMENTS = 'comments/POST_COMMENTS'
-const UPDATE_COMMENTS = 'comments/UPDATE_COMMENT'
-const DELETE_COMMENTS = 'comments/DELETE_COMMENTS'
 
 const get_comments = (payload) => ({
   type: GET_COMMENTS,
-  payload
-})
-
-const post_comments = (payload) => ({
-  type:POST_COMMENTS,
   payload
 })
 
@@ -33,7 +25,6 @@ export const posting_comments = (data) => async(dispatch) => {
   })
 
   if (response.ok) {
-    const data = await response.json();
     dispatch(getting_comments(anime_id))
     return null;
   } else if (response.status < 500) {

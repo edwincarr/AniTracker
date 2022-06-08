@@ -4,12 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/navbar/NavBar.js';
-import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import Browse from './components/browsing';
 import AnimePage from './components/anime_page';
 import AnimeList from './components/anime_list';
-import ProfilePage from './components/profile_page';
 import Splash from './components/splash_page';
 
 function App() {
