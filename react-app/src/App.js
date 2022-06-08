@@ -9,6 +9,7 @@ import Browse from './components/browsing';
 import AnimePage from './components/anime_page';
 import AnimeList from './components/anime_list';
 import Splash from './components/splash_page';
+import Activity from './components/activity_feed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path='/signup' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/home'>
+          <Activity />
         </Route>
         <Route path='/browse/anime'>
           <Browse />

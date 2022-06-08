@@ -11,6 +11,7 @@ class Anime(db.Model):
 
     user_list = db.relationship('User_List', back_populates='anime')
     comments = db.relationship('Comment', back_populates='anime')
+    feed = db.relationship('Feed', back_populates='anime')
 
     def to_dict(self):
         return {
