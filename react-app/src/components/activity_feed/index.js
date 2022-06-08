@@ -1,6 +1,6 @@
 const Activity = () => {
   return (
-    <h1>hi</h1>
+    <h1>actively working on this feature</h1>
   )
 }
 export default Activity
