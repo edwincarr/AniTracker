@@ -42,6 +42,7 @@ const ListForm = ({current, oldata}) => {
     dispatch(delete_list_row(oldata.id, userid))
     history.push(`/user/${user.id}/animelist`)
   }
+  // hello
   return (
     <div className='form'>
       <div className='modal-info'>
