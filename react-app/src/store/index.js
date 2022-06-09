@@ -4,12 +4,14 @@ import anime_reducer from './anime';
 import comments_reducer from './comments';
 import session from './session'
 import list_reducer from './user_list';
+import feed_reducer from './feed';
 
 const rootReducer = combineReducers({
   session,
   list: list_reducer,
   anime: anime_reducer,
-  comments: comments_reducer
+  comments: comments_reducer,
+  feed: feed_reducer
 });
 
 
