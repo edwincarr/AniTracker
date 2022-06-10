@@ -42,7 +42,7 @@ def changeStatusStuff():
       feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Plans to watch {anime.name.title()}')
     if new_row.status == 1:
       # watching
-      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Watched episode {anime.progress} of {anime.name.title()}')
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Watched episode {new_row.progress} of {anime.name.title()}')
     if new_row.status == 2:
       # completed
       new_row.progress = anime.episodes
@@ -72,8 +72,25 @@ def updateStatusStuff():
     old_row.progress = form.data['progress']
     old_row.status = form.data['status']
     old_row.score = form.data['score']
-    if form.data['status'] == 2:
+    # if form.data['status'] == 2:
+    #   old_row.progress = anime.episodes
+    if old_row.status == 0:
+      # plans to watch
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Plans to watch {anime.name.title()}')
+    if old_row.status == 1:
+      # watching
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Watched episode {old_row.progress} of {anime.name.title()}')
+    if old_row.status == 2:
+      # completed
       old_row.progress = anime.episodes
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Completed {anime.name.title()}')
+    if old_row.status == 3:
+      # Paused
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Paused {anime.name.title()}')
+    if old_row.status == 4:
+      # Dropped
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Dropped {anime.name.title()}')
+    db.session.add(feed_update)
     db.session.commit()
     return old_row.to_dict()
   return {'errors': validation_errors_to_error_messages(form.errors)}
