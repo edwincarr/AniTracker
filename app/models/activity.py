@@ -19,7 +19,7 @@ class Feed(db.Model):
     return {
       'id' : self.id,
       'user' : self.user.to_dict(),
-      'anime': self.anime.to_dict(),
+      'anime':self.anime.to_dict() if self.anime != None else None,
       'content': self.content,
       'created_at':self.created_at,
       'updated_at':self.updated_at
