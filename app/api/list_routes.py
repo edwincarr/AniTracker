@@ -1,7 +1,7 @@
 from crypt import methods
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, User, User_List, Anime
+from app.models import db, User, User_List, Anime, Feed
 from app.forms import ListForm
 from flask_login import current_user
 
@@ -36,8 +36,24 @@ def changeStatusStuff():
   if form.validate_on_submit():
     new_row = User_List(user_id=current_user.id, anime_id=form.data['animeid'], progress=form.data['progress'], status=form.data['status'], score=form.data['score'])
     anime = Anime.query.get(form.data['animeid'])
+    print(f'{new_row.status} \n\n\n\n\n\n\n\n\n')
+    if new_row.status == 0:
+      # plans to watch
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Plans to watch {anime.name.title()}')
+    if new_row.status == 1:
+      # watching
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'TBD')
     if new_row.status == 2:
+      # completed
       new_row.progress = anime.episodes
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Completed {anime.name.title()}')
+    if new_row.status == 3:
+      # Paused
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Paused {anime.name.title()}')
+    if new_row.status == 4:
+      # Dropped
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Dropped {anime.name.title()}')
+    db.session.add(feed_update)
     db.session.add(new_row)
     db.session.commit()
     return new_row.to_dict()
