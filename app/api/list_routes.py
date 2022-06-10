@@ -42,7 +42,7 @@ def changeStatusStuff():
       feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Plans to watch {anime.name.title()}')
     if new_row.status == 1:
       # watching
-      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'TBD')
+      feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Watched episode {anime.progress} of {anime.name.title()}')
     if new_row.status == 2:
       # completed
       new_row.progress = anime.episodes
