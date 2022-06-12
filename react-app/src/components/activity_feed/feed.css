@@ -8,6 +8,8 @@
 .feed-time {
   margin-left: auto;
   padding-right: 10px;
+  font-size: smaller;
+  color: gray;
 }
 .feed-container {
   display: flex;

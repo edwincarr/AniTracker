@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getting_feed } from "../../store/feed"
-import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import moment from 'moment'
 import './feed.css'
 
@@ -18,9 +18,9 @@ const Activity = () => {
   }
   return (
     <div className="feed-container">
-    {feed.length ? feed.map(it => {
+    {feed.length ? feed.map((it,idx) => {
       return (
-        <div className="update-container">
+        <div className="update-container" key={idx}>
           <img onClick={() => redirect(it.anime.id)} className='feed-image' src={it.anime.cover} height='110' alt={it.anime.name}/>
           <div className="update-content">
             <NavLink to={`/user/${it.user.id}/animelist`} className='feed-user'>{it.user.username}</NavLink>
