@@ -8,7 +8,6 @@ const get_feed = (payload) => ({
 export const getting_feed = () => async(dispatch) => {
   const response = await fetch(`/api/feed/`)
   let data = await response.json()
-  console.log('\n\n\n\n\n\n\n\n\n\n')
   dispatch(get_feed(data.feed))
 }
 

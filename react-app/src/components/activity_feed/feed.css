@@ -1,0 +1,31 @@
+.update-container {
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  width: 700px;
+  display: flex;
+  margin-top: 20px;
+}
+.feed-time {
+  margin-left: auto;
+  padding-right: 10px;
+}
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.update-content {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.feed-user {
+  text-decoration: none;
+  color: #57acfd;
+  font-weight: 600;
+}
+.feed-image {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  cursor: pointer;
+}
