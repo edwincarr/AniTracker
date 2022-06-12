@@ -72,8 +72,6 @@ def updateStatusStuff():
     old_row.progress = form.data['progress']
     old_row.status = form.data['status']
     old_row.score = form.data['score']
-    # if form.data['status'] == 2:
-    #   old_row.progress = anime.episodes
     if old_row.status == 0:
       # plans to watch
       feed_update = Feed(user_id=current_user.id, anime_id=form.data['animeid'], content=f'Plans to watch {anime.name.title()}')
