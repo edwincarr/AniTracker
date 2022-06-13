@@ -11,6 +11,7 @@ class Following(db.Model):
 
   def to_dict(self):
     return {
+      'id':self.id,
       'user': self.user.to_dict(),
       'following': self.user.to_dict()
     }
