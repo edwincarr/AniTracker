@@ -1,6 +1,5 @@
-from flask import Blueprint, request
-from app.models import User, db, Anime
-from flask_login import current_user, login_user, logout_user, login_required
+from flask import Blueprint
+from app.models import Anime
 
 
 anime_routes = Blueprint('anime', __name__)

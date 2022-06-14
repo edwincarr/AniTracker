@@ -1,5 +1,4 @@
-from crypt import methods
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, User, User_List, Anime, Feed
 from app.forms import ListForm
