@@ -11,6 +11,15 @@ export const getting_followings = () => async(dispatch) => {
   dispatch(get_following(data.following))
 }
 
+export const follow_them = (user_id) => async(dispatch) => {
+  const response = await fetch(`/api/following/${user_id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
 const initialState = {}
 export default function following_reducer(state = initialState, action) {
   let newState
