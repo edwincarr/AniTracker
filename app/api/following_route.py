@@ -5,9 +5,9 @@ from app.models import db, User, Following
 
 following_routes = Blueprint('following', __name__)
 
-@following_routes.route('/<int:user_id>', methods=['GET'])
-def getFollowers(user_id):
-  data = Following.query.filter(Following.user_id == user_id)
+@following_routes.route('/', methods=['GET'])
+def get_users_followers():
+  data = Following.query.filter(Following.user_id == current_user.id)
   return {'following': [follow.to_dict() for follow in data]}
 
 @following_routes.route('/<int:user_id>', methods=['POST'])

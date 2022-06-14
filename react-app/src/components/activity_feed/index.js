@@ -1,23 +1,32 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getting_feed } from "../../store/feed"
 import { NavLink, useHistory } from 'react-router-dom';
 import moment from 'moment'
 import './feed.css'
+import { getting_followings } from "../../store/following";
 
 const Activity = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const feed = useSelector(state => state.feed)
-  console.log(feed)
+  const [isGlobal, setIsGlobal] = useState(true)
+
   useEffect(() => {
     dispatch(getting_feed())
+    dispatch(getting_followings())
   }, [])
+
   const redirect = (id) => {
     history.push(`/anime/${id}`)
   }
+
   return (
     <div className="feed-container">
+      <div className="feed-toggle">
+        <div>Following</div>
+        <div>Global</div>
+      </div>
     {feed.length ? feed.map((it,idx) => {
       return (
         <div className="update-container" key={idx}>
