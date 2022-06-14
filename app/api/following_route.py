@@ -1,10 +1,18 @@
+from crypt import methods
 from flask import Blueprint
-from flask_login import login_required
-from app.models import User, Following
+from flask_login import login_required, current_user
+from app.models import db, User, Following
 
 following_routes = Blueprint('following', __name__)
 
-@following_routes.route('/')
+@following_routes.route('/<int:user_id>', methods=['GET'])
+def getFollowers(user_id):
+  data = Following.query.filter(Following.user_id == user_id)
+  return {'following': [follow.to_dict() for follow in data]}
+
+@following_routes.route('/<int:user_id>', methods=['POST'])
 @login_required
-def follow():
-  print('\n\n\n')
+def follow(user_id):
+  follow = Following(user_id=current_user.id, following=user_id)
+  db.session.add(follow)
+  db.session.commit()

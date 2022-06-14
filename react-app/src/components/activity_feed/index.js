@@ -23,7 +23,7 @@ const Activity = () => {
         <div className="update-container" key={idx}>
           <img onClick={() => redirect(it.anime.id)} className='feed-image' src={it.anime.cover} height='110' alt={it.anime.name}/>
           <div className="update-content">
-            <NavLink to={`/user/${it.user.id}/animelist`} className='feed-user'>{it.user.username}</NavLink>
+            <NavLink to={`/user/${it.user.id}`} className='feed-user'>{it.user.username}</NavLink>
             <p>{it.content}</p>
           </div>
           <p className="feed-time">{moment(it.created_at).fromNow()}</p>
