@@ -5,13 +5,15 @@ import comments_reducer from './comments';
 import session from './session'
 import list_reducer from './user_list';
 import feed_reducer from './feed';
+import following_reducer from './following';
 
 const rootReducer = combineReducers({
   session,
   list: list_reducer,
   anime: anime_reducer,
   comments: comments_reducer,
-  feed: feed_reducer
+  feed: feed_reducer,
+  following: following_reducer
 });
 
 

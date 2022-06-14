@@ -10,6 +10,7 @@ import AnimePage from './components/anime_page';
 import AnimeList from './components/anime_list';
 import Splash from './components/splash_page';
 import Activity from './components/activity_feed';
+import ProfilePage from './components/profile_page';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,9 +48,9 @@ function App() {
         <Route path='/anime/:animeid'>
           <AnimePage />
         </Route>
-        {/* <Route path='/user/:userid' exact={true}>
+        <Route path='/user/:userid' exact={true}>
           <ProfilePage />
-        </Route> */}
+        </Route>
         <Route path='/user/:userid/animelist' exact={true}>
           <AnimeList/>
         </Route>
