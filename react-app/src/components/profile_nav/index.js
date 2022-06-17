@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
 import './profilenav.css'
 import { follow_them, unfollow_them } from "../../store/following"
 
