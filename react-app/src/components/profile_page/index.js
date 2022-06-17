@@ -12,7 +12,6 @@ const ProfilePage = () => {
   useEffect(() => {
     dispatch(get_other_user(userid))
   }, [userid])
-
   return (
     user ? <ProfileNav user={user} /> : null
   )

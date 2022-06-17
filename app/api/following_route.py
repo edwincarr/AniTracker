@@ -26,3 +26,11 @@ def unfollow(user_id):
   db.session.delete(data)
   db.session.commit()
   return 'success'
+
+@following_routes.route('/<int:user_id>', methods=['GET'])
+@login_required
+def isFollow(user_id):
+  data = Following.query.filter(Following.user_id == current_user.id, Following.following_id == user_id).one_or_none()
+  if data:
+    return "true"
+  return "false"

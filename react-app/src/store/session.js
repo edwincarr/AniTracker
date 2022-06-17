@@ -1,3 +1,5 @@
+import { isFollowing } from "./following";
+
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -105,6 +107,8 @@ export const signUp = (username, email, password,repeatPassword) => async (dispa
 export const get_other_user = (id) => async(dispatch) => {
   const response = await fetch(`/api/auth/${id}`)
   const data = await response.json()
+  let some = await dispatch(isFollowing(id))
+  data.following = some
   dispatch(getOther(data))
 }
 
