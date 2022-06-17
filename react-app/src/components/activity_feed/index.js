@@ -33,8 +33,8 @@ const Activity = () => {
   return (
     <div className="feed-container">
       <div className="feed-toggle">
-        <div className={following ? 'active-feed' : 'following'} onClick={followingFeed}>Following</div>
-        <div className={global ? 'active-feed' : 'global'} onClick={globalFeed}>Global</div>
+        <div className={global ? 'active-feed' : 'global-Tog'} onClick={globalFeed}>Global</div>
+        <div className={following ? 'active-feed' : 'following-Tog'} onClick={followingFeed}>Following</div>
       </div>
     {feed.length ?
     feed.map((it,idx) => {

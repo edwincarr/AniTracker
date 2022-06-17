@@ -27,3 +27,21 @@
   font-size: large;
   font-weight: 600;
 }
+.following {
+  background-color: #3577ff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  padding: 5px 9px;
+  cursor: pointer;
+}
+.follow {
+  background-color: grey;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  padding: 5px 9px;
+  cursor: pointer;
+}
