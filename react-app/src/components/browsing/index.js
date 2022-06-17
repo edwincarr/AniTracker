@@ -11,7 +11,7 @@ const Browse = () => {
   const anime = useSelector(state => state.anime)
 
   const onScroll = () => {
-    if(window.pageYOffset > containerRef?.current?.clientHeight -1000){
+    if(window.pageYOffset > containerRef?.current?.clientHeight - 1000){
         dispatch(loadingAnime(anime.page))
     }
   }
@@ -34,9 +34,9 @@ const Browse = () => {
 
   return (
     <div className='browse-container' ref={containerRef} >
-    {anime?.anime?.map(arr => {
+    {anime?.anime?.map((arr, idx) => {
       return (
-        <AnimeCard anime={arr}/>
+        <AnimeCard anime={arr} key={idx}/>
         )
       })}
     </div>

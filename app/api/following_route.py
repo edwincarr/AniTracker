@@ -13,8 +13,16 @@ def get_users_followers():
 @following_routes.route('/<int:user_id>', methods=['POST'])
 @login_required
 def follow(user_id):
-  print(current_user.id, '\n\n\n\n\n\n\n\n\n\n\n\n', user_id)
   follows = Following(user_id=current_user.id, following_id=user_id)
   db.session.add(follows)
   db.session.commit()
-  return
+  return 'success'
+
+@following_routes.route('/<int:user_id>', methods=['DELETE'])
+@login_required
+def unfollow(user_id):
+  data = Following.query.filter(Following.user_id == current_user.id, Following.following_id == user_id).one()
+  print('\n\n\n\n\n\n\n\n\n', data)
+  db.session.delete(data)
+  db.session.commit()
+  return 'success'

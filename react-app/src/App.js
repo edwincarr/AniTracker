@@ -11,6 +11,7 @@ import AnimeList from './components/anime_list';
 import Splash from './components/splash_page';
 import Activity from './components/activity_feed';
 import ProfilePage from './components/profile_page';
+import { getting_followings } from './store/following';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -20,6 +21,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getting_followings())
       setLoaded(true);
     })();
   }, [dispatch]);

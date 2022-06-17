@@ -18,6 +18,22 @@ export const follow_them = (user_id) => async(dispatch) => {
       'Content-Type': 'application/json'
     }
   })
+  console.log(response)
+  if(response.ok){
+    dispatch(getting_followings())
+  }
+}
+
+export const unfollow_them = (user_id) => async(dispatch) => {
+  const response = await fetch(`/api/following/${user_id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  if(response.ok){
+    dispatch(getting_followings())
+  }
 }
 
 const initialState = {}
