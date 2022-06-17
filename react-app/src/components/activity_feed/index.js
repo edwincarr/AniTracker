@@ -9,6 +9,9 @@ const Activity = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const feed = useSelector(state => state.feed)
+  const [global, setGlobal] = useState(true)
+  const [following, setFollowing] = useState(false)
+
 
   useEffect(() => {
     dispatch(getting_feed())
@@ -19,15 +22,19 @@ const Activity = () => {
   }
   const followingFeed = () => {
     dispatch(getting_following_feed())
+    setGlobal(false)
+    setFollowing(true)
   }
   const globalFeed = () => {
     dispatch(getting_feed())
+    setFollowing(false)
+    setGlobal(true)
   }
   return (
     <div className="feed-container">
       <div className="feed-toggle">
-        <div onClick={followingFeed}>Following</div>
-        <div  onClick={globalFeed}>Global</div>
+        <div className={global ? 'active-feed' : 'global-Tog'} onClick={globalFeed}>Global</div>
+        <div className={following ? 'active-feed' : 'following-Tog'} onClick={followingFeed}>Following</div>
       </div>
     {feed.length ?
     feed.map((it,idx) => {

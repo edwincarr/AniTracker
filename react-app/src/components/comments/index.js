@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, NavLink} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { delete_comment, update_comment } from '../../store/comments'
 import Popup from 'reactjs-popup';
@@ -59,7 +59,7 @@ const Comments = ({comments}) => {
           return (
         <div className='comment-box'>
         <div>
-        <div className='comment-username'>{comment.poster.username}:</div>
+        <NavLink to={`/user/${comment.poster.id}`} className='feed-user'>{comment.poster.username}</NavLink>
         {isEditing && editId === comment.id?
         <>
         <form className='update-comment-box' onSubmit={(e) => sendUpdate(e, comment)}>

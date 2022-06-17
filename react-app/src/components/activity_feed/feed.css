@@ -31,3 +31,21 @@
   border-bottom-left-radius: 5px;
   cursor: pointer;
 }
+.feed-toggle {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: #fbfbfb;
+}
+.following-Tog , .global-Tog {
+  transition: all .17s;
+}
+.following:hover, .global:hover {
+  color:#57acfd;
+}
+.active-feed {
+  color:#57acfd;
+}
