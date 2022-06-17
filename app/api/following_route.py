@@ -22,7 +22,6 @@ def follow(user_id):
 @login_required
 def unfollow(user_id):
   data = Following.query.filter(Following.user_id == current_user.id, Following.following_id == user_id).one()
-  print('\n\n\n\n\n\n\n\n\n', data)
   db.session.delete(data)
   db.session.commit()
   return 'success'
