@@ -21,9 +21,9 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getting_followings())
       setLoaded(true);
     })();
+    dispatch(getting_followings())
   }, [dispatch]);
 
   if (!loaded) {
