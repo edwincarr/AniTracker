@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
-  margin-left: -150px;
+  /* margin-left: -150px; */
 }
 .anime-cover {
   align-self: flex-start;
@@ -19,7 +19,7 @@
 }
 .anime-bio {
   max-width: 900px;
-  min-width: 700px;
+  /* min-width: 700px; */
   margin-top: 100px;
   font-size: large;
 }
