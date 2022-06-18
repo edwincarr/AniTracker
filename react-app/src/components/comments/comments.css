@@ -25,6 +25,7 @@
   padding: 6px 10px;
   font-weight: 600;
   border-radius: 4px;
+  cursor: pointer;
 }
 .comment-content {
   max-width: 600px;
@@ -70,4 +71,7 @@
   flex-direction: column;
   align-items: center;
   gap: 3px;
+}
+.vertMenu {
+  cursor: pointer;
 }

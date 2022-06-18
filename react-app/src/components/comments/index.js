@@ -82,12 +82,12 @@ const Comments = ({comments}) => {
         <div>
 
           {user.id === comment.poster.id ?
-            <Popup trigger={<MoreVertIcon  />} closeOnDocumentClick position="right top" arrow={false} >
+            <Popup trigger={<MoreVertIcon className='vertMenu'/>} closeOnDocumentClick position="right top" arrow={false} >
               {close => (
                 <div className='comment-buttons'>
-                <div className='comment-button' onClick={() => onDelete(comment, close)}>Delete</div>
-                <div className='comment-button' onClick={(e) => setEdit(comment, close)}>Update</div>
-              </div>
+                  <div className='comment-button' onClick={() => onDelete(comment, close)}>Delete</div>
+                  <div className='comment-button' onClick={(e) => setEdit(comment, close)}>Update</div>
+                </div>
                 )}
             </Popup>
             :
