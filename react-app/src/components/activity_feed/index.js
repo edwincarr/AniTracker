@@ -1,21 +1,15 @@
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { getting_feed, getting_following_feed } from "../../store/feed"
 import { NavLink, useHistory } from 'react-router-dom';
 import moment from 'moment'
 import './feed.css'
 
-const Activity = () => {
+const Activity = ({feed}) => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const feed = useSelector(state => state.feed)
   const [global, setGlobal] = useState(true)
   const [following, setFollowing] = useState(false)
-
-
-  useEffect(() => {
-    dispatch(getting_feed())
-  }, [])
 
   const redirect = (id) => {
     history.push(`/anime/${id}`)
@@ -30,12 +24,17 @@ const Activity = () => {
     setFollowing(false)
     setGlobal(true)
   }
+  let home = window.location.href.split('/')[3]
   return (
     <div className="feed-container">
+      {home === 'home' ?
       <div className="feed-toggle">
         <div className={global ? 'active-feed' : 'global-Tog'} onClick={globalFeed}>Global</div>
         <div className={following ? 'active-feed' : 'following-Tog'} onClick={followingFeed}>Following</div>
       </div>
+      :
+      null
+      }
     {feed.length ?
     feed.map((it,idx) => {
       return (
