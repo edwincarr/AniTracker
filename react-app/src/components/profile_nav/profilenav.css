@@ -9,11 +9,15 @@
   width: 150px;
 }
 .profile-nav {
+  display: flex;
   width: 100%;
   background-color: white;
   height: 50px;
   box-shadow: 0px 10px 20px #dee4ec;
   z-index: -101;
+  padding-left: 20%;
+  align-items: center;
+  gap: 20px;
 }
 .profile-nav-user {
   display: flex;
@@ -46,4 +50,12 @@
   font-size: 14px;
   padding: 5px 9px;
   cursor: pointer;
+}
+.profile-nav a {
+  color: #1e2034;
+  text-decoration: none;
+  transition: all .2s;
+}
+.profile-nav a:hover {
+  color: #3577ff;
 }
