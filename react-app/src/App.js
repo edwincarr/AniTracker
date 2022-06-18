@@ -12,10 +12,12 @@ import Splash from './components/splash_page';
 import Activity from './components/activity_feed';
 import ProfilePage from './components/profile_page';
 import { getting_followings } from './store/following';
+import { getting_feed } from './store/feed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const user = useSelector(state => state.session.user)
+  const feed = useSelector(state => state.feed)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +26,7 @@ function App() {
       setLoaded(true);
     })();
     dispatch(getting_followings())
+    dispatch(getting_feed())
   }, [dispatch]);
 
   if (!loaded) {
@@ -42,7 +45,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/home'>
-          <Activity />
+          <Activity feed={feed}/>
         </Route>
         <Route path='/browse/anime'>
           <Browse />

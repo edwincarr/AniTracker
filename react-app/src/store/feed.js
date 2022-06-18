@@ -11,6 +11,12 @@ export const getting_feed = () => async(dispatch) => {
   dispatch(get_feed(data.feed))
 }
 
+export const get_one_feed = (id) => async(dispatch) => {
+  const response = await fetch(`/api/feed/${id}`)
+  let data = await response.json()
+  dispatch(get_feed(data.feed))
+}
+
 export const getting_following_feed = () => async(dispatch) => {
   const response = await fetch(`/api/feed/following`)
   let data = await response.json()

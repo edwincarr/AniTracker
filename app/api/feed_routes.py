@@ -15,3 +15,8 @@ def getFollowingFeed():
   following_list = [some.to_dict()['following']['id'] for some in following]
   data = Feed.query.filter(Feed.user_id.in_(following_list)).order_by(Feed.created_at.desc())
   return {'feed': [post.to_dict() for post in data]}
+
+@feed_routes.route('/<int:id>')
+def get_user_feed(id):
+  data = Feed.query.filter(Feed.user_id == id).order_by(Feed.created_at.desc()).all()
+  return {'feed': [post.to_dict() for post in data]}
