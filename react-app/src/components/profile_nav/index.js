@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import './profilenav.css'
 import { follow_them, unfollow_them } from "../../store/following"
+import { NavLink } from 'react-router-dom';
 
 const ProfileNav = ({ user }) => {
   const sesh = useSelector(state => state.session.user)
@@ -23,7 +24,8 @@ const ProfileNav = ({ user }) => {
       </div>
     </div>
     <div className="profile-nav">
-
+      <NavLink to={`/user/${user.id}`}>Profile</NavLink>
+      <NavLink to={`/user/${user.id}/animelist`}>Anime List</NavLink>
     </div>
     </>
     )
