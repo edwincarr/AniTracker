@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './splash.css'
-// import { ReactComponent as Github} from './footer-icons/github.svg'
-// import { ReactComponent as Linkedin} from './footer-icons/linkedin.svg'
+import Github from './footer-icons/github.svg'
+import Linkedin from './footer-icons/linkedin.svg'
 
 const Splash = () => {
   const navigate = useNavigate()
@@ -11,7 +11,7 @@ const Splash = () => {
   }
   return (
     <>
-    {/* <div className='splash-body'>
+    <div className='splash-body'>
       <div className='splash-container'>
         <div className='splash-text'>
           <h1>The next-generation anime platform</h1>
@@ -63,13 +63,13 @@ const Splash = () => {
     </div>
     <footer>
       <a href="https://github.com/edwincarr" target="_blank" rel="noreferrer">
-        <Github />
+        <img src={Github} alt='github' />
       </a>
       <a href='https://www.linkedin.com/in/edwincarr/' target="_blank" rel="noreferrer">
-        <Linkedin/>
+        <img src={Linkedin} alt='linkedin'/>
       </a>
     </footer>
-    </div> */}
+    </div>
     </>
   )
 }
