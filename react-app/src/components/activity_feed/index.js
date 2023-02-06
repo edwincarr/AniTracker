@@ -1,18 +1,18 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { getting_feed, getting_following_feed } from "../../store/feed"
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import './feed.css'
 
 const Activity = ({feed}) => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
   const [global, setGlobal] = useState(true)
   const [following, setFollowing] = useState(false)
 
   const redirect = (id) => {
-    history.push(`/anime/${id}`)
+    navigate(`/anime/${id}`)
   }
   const followingFeed = () => {
     dispatch(getting_following_feed())

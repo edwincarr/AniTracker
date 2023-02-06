@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './auth.css'
 
@@ -38,7 +38,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/browse/anime' />;
+    return <Navigate to='/browse/anime' />;
   }
 
   return (

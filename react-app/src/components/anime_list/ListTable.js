@@ -1,11 +1,11 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './list.css'
 
 
 const ListTable = ({status}) => {
   const list = useSelector(state => state.list.current)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   let header
   const headerFunc = () => {
@@ -26,7 +26,7 @@ const ListTable = ({status}) => {
   }
   headerFunc()
   const onClick = (id) => {
-    history.push(`/anime/${id}`)
+    navigate(`/anime/${id}`)
   }
 
   return ( list ?

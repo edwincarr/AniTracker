@@ -1,11 +1,11 @@
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './browsing.css'
 
 const AnimeCard = ({anime}) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const onClick = () => {
-    history.push(`/anime/${anime.id}`)
+    navigate(`/anime/${anime.id}`)
   }
 
   return (

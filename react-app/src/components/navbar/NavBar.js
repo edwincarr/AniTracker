@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
-import {ReactComponent as Svg} from '../../images/logo.svg'
+// import {ReactComponent as Svg} from '../../images/logo.svg'
 import { useDispatch } from 'react-redux';
 import { getting_feed } from '../../store/feed';
 
@@ -17,7 +17,7 @@ const NavBar = ({user}) => {
       {user?
       <div className='nav'>
       <NavLink to='/home'>
-        <Svg className='nav-logo' onClick={home === 'home' ? null : click}/>
+        {/* <Svg className='nav-logo' onClick={home === 'home' ? null : click}/> */}
       </NavLink>
         <div className='nav-links'>
           <NavLink to={`/home`}  onClick={home === 'home' ? null : click}>Home</NavLink>
@@ -33,7 +33,7 @@ const NavBar = ({user}) => {
       :
       <div className='nav'>
       <NavLink to='/'>
-        <Svg className='nav-logo'/>
+        {/* <Svg className='nav-logo'/> */}
       </NavLink>
         <div className='nav-links'>
           <NavLink to='/browse/anime'>Browse</NavLink>

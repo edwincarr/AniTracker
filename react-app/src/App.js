@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -37,41 +37,21 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar user={user}/>
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/signup' exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path='/home'>
-          <Activity feed={feed}/>
-        </Route>
-        <Route path='/browse/anime'>
-          <Browse />
-        </Route>
-        <Route path='/anime/:animeid'>
-          <AnimePage />
-        </Route>
-        <Route path='/user/:userid' exact={true}>
-          <ProfilePage />
-        </Route>
-        <Route path='/user/:userid/animelist' exact={true}>
-          <AnimeList/>
-        </Route>
+      <Routes>
+        <Route path='/login' exact={true} element={<LoginForm/>} />
+        <Route path='/signup' exact={true} element={<SignUpForm/>} />
+        <Route path='/home' element={<Activity feed={feed}/>} />
+        <Route path='/browse/anime' element={<Browse/>} />
+        <Route path='/anime/:animeid' element={<AnimePage/>} />
+        <Route path='/user/:userid' exact={true} element={<ProfilePage/>} />
+        <Route path='/user/:userid/animelist' exact={true} element={<AnimeList/>} />
         {user ?
-        <Route>
-          <Redirect to='/browse/anime' />
-        </Route>
+        <Route render={() => <Navigate to='/browse/anime'/>} />
         :
-        <Route path='/' exact={true}>
-          <Splash />
-        </Route>
+        <Route path='/' exact={true} element={<Splash/>} />
         }
-        <Route>
-          <Redirect to='/browse/anime' />
-        </Route>
-      </Switch>
+        <Route render={() => <Navigate to='/browse/anime'/>} />
+      </Routes>
     </BrowserRouter>
   );
 }

@@ -1,17 +1,17 @@
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './splash.css'
-import { ReactComponent as Github} from './footer-icons/github.svg'
-import { ReactComponent as Linkedin} from './footer-icons/linkedin.svg'
+// import { ReactComponent as Github} from './footer-icons/github.svg'
+// import { ReactComponent as Linkedin} from './footer-icons/linkedin.svg'
 
 const Splash = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const onClick = () => {
-    history.push(`/signup`)
+    navigate(`/signup`)
   }
   return (
     <>
-    <div className='splash-body'>
+    {/* <div className='splash-body'>
       <div className='splash-container'>
         <div className='splash-text'>
           <h1>The next-generation anime platform</h1>
@@ -69,7 +69,7 @@ const Splash = () => {
         <Linkedin/>
       </a>
     </footer>
-    </div>
+    </div> */}
     </>
   )
 }
