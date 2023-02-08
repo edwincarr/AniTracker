@@ -21,11 +21,14 @@ const AnimePage = () => {
   const [ data, setData ] = useState([])
   const dispatch = useDispatch()
 
-  useEffect(async() => {
+  useEffect(() => {
     dispatch(getOneAnime(animeid))
     dispatch(getting_comments(animeid))
-    await dispatch(get_user_list())
-    setIsLoaded(true)
+    const get_user = async () => {
+      await dispatch(get_user_list())
+      setIsLoaded(true)
+    }
+    get_user()
   },[dispatch, animeid])
 
   useEffect(()=> {

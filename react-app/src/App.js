@@ -46,11 +46,11 @@ function App() {
         <Route path='/user/:userid' exact={true} element={<ProfilePage/>} />
         <Route path='/user/:userid/animelist' exact={true} element={<AnimeList/>} />
         {user ?
-        <Route render={() => <Navigate to='/browse/anime'/>} />
+        <Route path='/' element={<Navigate to='/home' replace />} />
         :
         <Route path='/' exact={true} element={<Splash/>} />
         }
-        <Route render={() => <Navigate to='/browse/anime'/>} />
+        <Route path="*" element={<Navigate to='/browse/anime' replace/>} />
       </Routes>
     </BrowserRouter>
   );
