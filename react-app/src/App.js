@@ -40,17 +40,19 @@ function App() {
       <Routes>
         <Route path='/login' exact={true} element={<LoginForm/>} />
         <Route path='/signup' exact={true} element={<SignUpForm/>} />
-        <Route path='/home' element={<Activity feed={feed}/>} />
         <Route path='/browse/anime' element={<Browse/>} />
         <Route path='/anime/:animeid' element={<AnimePage/>} />
         <Route path='/user/:userid' exact={true} element={<ProfilePage/>} />
         <Route path='/user/:userid/animelist' exact={true} element={<AnimeList/>} />
         {user ?
-        <Route path='/' element={<Navigate to='/home' replace />} />
+        <>
+          <Route path='/' element={<Navigate to='/home' replace />} />
+          <Route path='/home' element={<Activity feed={feed}/>} />
+        </>
         :
         <Route path='/' exact={true} element={<Splash/>} />
         }
-        <Route path="*" element={<Navigate to='/browse/anime' replace/>} />
+        <Route path="*" element={<Navigate to='/' replace/>} />
       </Routes>
     </BrowserRouter>
   );
