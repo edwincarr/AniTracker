@@ -1,13 +1,13 @@
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './splash.css'
-import { ReactComponent as Github} from './footer-icons/github.svg'
-import { ReactComponent as Linkedin} from './footer-icons/linkedin.svg'
+import Github from './footer-icons/github.svg'
+import Linkedin from './footer-icons/linkedin.svg'
 
 const Splash = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const onClick = () => {
-    history.push(`/signup`)
+    navigate(`/signup`)
   }
   return (
     <>
@@ -63,10 +63,10 @@ const Splash = () => {
     </div>
     <footer>
       <a href="https://github.com/edwincarr" target="_blank" rel="noreferrer">
-        <Github />
+        <img src={Github} alt='github' />
       </a>
       <a href='https://www.linkedin.com/in/edwincarr/' target="_blank" rel="noreferrer">
-        <Linkedin/>
+        <img src={Linkedin} alt='linkedin'/>
       </a>
     </footer>
     </div>

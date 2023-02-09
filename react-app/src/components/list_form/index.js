@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import './anime_form.css'
 import { create_list_row, delete_list_row, update_list_row } from '../../store/user_list'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const ListForm = ({current, oldata}) => {
   const dispatch = useDispatch()
   const {userid} = useParams()
   const user = useSelector(state => state.session.user)
-  const history = useHistory()
+  const navigate = useNavigate()
   const [status, setStatus] = useState(oldata?.status ? oldata.status : 0);
   const [score, setScore] = useState(oldata?.score ? oldata.score : 0);
   const [progress, setProgress] = useState(oldata?.progress ? oldata.progress : 0)
@@ -26,7 +26,7 @@ const ListForm = ({current, oldata}) => {
     }else{
       await dispatch(create_list_row(data))
     }
-    history.push(`/user/${user.id}/animelist`)
+    navigate(`/user/${user.id}/animelist`)
   }
 
   const updateStatus = (e) => {
@@ -40,13 +40,13 @@ const ListForm = ({current, oldata}) => {
   }
   const onDelete = () => {
     dispatch(delete_list_row(oldata.id, userid))
-    history.push(`/user/${user.id}/animelist`)
+    navigate(`/user/${user.id}/animelist`)
   }
   return (
     <div className='form'>
       <div className='modal-info'>
-        <img src={current.cover} height='100px' alt={`${current.name}`}/>
-        <h2>{current.name}</h2>
+        <img src={current.cover.extraLarge} height='100px' alt={`${current.name.userPreferred}`}/>
+        <h2>{current.name.userPreferred}</h2>
       </div>
       <form className='actual-form' onSubmit={(e) => onSubmit(e)}>
         <div className='modal-grouping'>

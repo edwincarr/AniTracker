@@ -1,18 +1,18 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { getting_feed, getting_following_feed } from "../../store/feed"
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import './feed.css'
 
 const Activity = ({feed}) => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
   const [global, setGlobal] = useState(true)
   const [following, setFollowing] = useState(false)
 
   const redirect = (id) => {
-    history.push(`/anime/${id}`)
+    navigate(`/anime/${id}`)
   }
   const followingFeed = () => {
     dispatch(getting_following_feed())
@@ -39,7 +39,7 @@ const Activity = ({feed}) => {
     feed.map((it,idx) => {
       return (
         <div className="update-container" key={idx}>
-          <img onClick={() => redirect(it.anime.id)} className='feed-image' src={it.anime.cover} height='110' alt={it.anime.name}/>
+          <img onClick={() => redirect(it.anime.id)} className='feed-image' src={it.anime.cover.extraLarge} height='110' alt={it.anime.name.userPreferred}/>
           <div className="update-content">
             <NavLink to={`/user/${it.user.id}`} className='feed-user'>{it.user.username}</NavLink>
             <p>{it.content}</p>

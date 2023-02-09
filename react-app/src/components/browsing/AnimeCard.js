@@ -1,17 +1,17 @@
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './browsing.css'
 
 const AnimeCard = ({anime}) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const onClick = () => {
-    history.push(`/anime/${anime.id}`)
+    navigate(`/anime/${anime.id}`)
   }
 
   return (
     <div className='card' onClick={onClick}>
-      <img src={anime.cover} alt={anime.name}/>
-      <h4>{anime.name}</h4>
+      <img src={anime.cover.extraLarge} alt={anime.name.userPreferred}/>
+      <h4>{anime.name.userPreferred}</h4>
     </div>
   )
 }

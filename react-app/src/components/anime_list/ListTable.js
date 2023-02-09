@@ -1,11 +1,11 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './list.css'
 
 
 const ListTable = ({status}) => {
   const list = useSelector(state => state.list.current)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   let header
   const headerFunc = () => {
@@ -26,7 +26,7 @@ const ListTable = ({status}) => {
   }
   headerFunc()
   const onClick = (id) => {
-    history.push(`/anime/${id}`)
+    navigate(`/anime/${id}`)
   }
 
   return ( list ?
@@ -47,8 +47,8 @@ const ListTable = ({status}) => {
           }
           return (
             <div key={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
-            <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>
-            <p className='title-n-row'>{anime.anime.name}</p>
+            <img src={anime.anime.cover.extraLarge} className='list-n-row' alt={anime.anime.name.userPreferred}/>
+            <p className='title-n-row'>{anime.anime.name.userPreferred}</p>
             <p>{anime.score ? anime.score: 0}</p>
             {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
             </div>

@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/session';
 
 const LogoutButton = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const onLogout = async (e) => {
-    history.push('/')
+    navigate('/')
     await dispatch(logout());
-    history.push('/')
+    navigate('/')
   };
 
   return <button className='logout-button' onClick={onLogout}>Logout</button>;

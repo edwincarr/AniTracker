@@ -21,11 +21,14 @@ const AnimePage = () => {
   const [ data, setData ] = useState([])
   const dispatch = useDispatch()
 
-  useEffect(async() => {
+  useEffect(() => {
     dispatch(getOneAnime(animeid))
     dispatch(getting_comments(animeid))
-    await dispatch(get_user_list())
-    setIsLoaded(true)
+    const get_user = async () => {
+      await dispatch(get_user_list())
+      setIsLoaded(true)
+    }
+    get_user()
   },[dispatch, animeid])
 
   useEffect(()=> {
@@ -43,7 +46,7 @@ const AnimePage = () => {
     <>
     <div className="page-container">
       <div className="anime-cover">
-        <img src={currentAni.cover} height='300' alt={currentAni.name}/>
+        <img src={currentAni.cover?.extraLarge} height='300' alt={currentAni.name?.userPreferred}/>
         {user && isLoaded ?
           <ModalThing name={doesExist ? 'Update' : 'Add To List'}>
             <ListForm current={currentAni} oldata={doesExist? data:null}/>
@@ -54,7 +57,7 @@ const AnimePage = () => {
         {currentAni.episodes === 1 ? <p>1 Episode</p> : <p>{currentAni.episodes} Episodes</p>}
       </div>
       <div className="anime-bio">
-        <h1>{currentAni.name}</h1>
+        <h1>{currentAni.name?.userPreferred}</h1>
         <p>{currentAni.bio}</p>
       </div>
     </div>
