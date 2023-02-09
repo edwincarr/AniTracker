@@ -1,6 +1,5 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .anime import seed_anime
 from .lists import seed_lists
 
 # Creates a seed group to hold our commands
@@ -12,7 +11,6 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    seed_anime()
     seed_lists()
     # Add other seed functions here
 

@@ -23,7 +23,7 @@ const AnimePage = () => {
 
   useEffect(() => {
     dispatch(getOneAnime(animeid))
-    // dispatch(getting_comments(animeid))
+    dispatch(getting_comments(animeid))
     const get_user = async () => {
       await dispatch(get_user_list())
       setIsLoaded(true)

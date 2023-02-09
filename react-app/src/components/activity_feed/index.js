@@ -39,7 +39,7 @@ const Activity = ({feed}) => {
     feed.map((it,idx) => {
       return (
         <div className="update-container" key={idx}>
-          <img onClick={() => redirect(it.anime.id)} className='feed-image' src={it.anime.cover} height='110' alt={it.anime.name}/>
+          <img onClick={() => redirect(it.anime.id)} className='feed-image' src={it.anime.cover.extraLarge} height='110' alt={it.anime.name.userPreferred}/>
           <div className="update-content">
             <NavLink to={`/user/${it.user.id}`} className='feed-user'>{it.user.username}</NavLink>
             <p>{it.content}</p>

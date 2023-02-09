@@ -47,8 +47,8 @@ const ListTable = ({status}) => {
           }
           return (
             <div key={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
-            <img src={anime.anime.cover} className='list-n-row' alt={anime.anime.name}/>
-            <p className='title-n-row'>{anime.anime.name}</p>
+            <img src={anime.anime.cover.extraLarge} className='list-n-row' alt={anime.anime.name.userPreferred}/>
+            <p className='title-n-row'>{anime.anime.name.userPreferred}</p>
             <p>{anime.score ? anime.score: 0}</p>
             {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
             </div>
