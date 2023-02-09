@@ -10,8 +10,8 @@ const AnimeCard = ({anime}) => {
 
   return (
     <div className='card' onClick={onClick}>
-      <img src={anime.cover} alt={anime.name}/>
-      <h4>{anime.name}</h4>
+      <img src={anime.cover.extraLarge} alt={anime.name.userPreferred}/>
+      <h4>{anime.name.userPreferred}</h4>
     </div>
   )
 }
