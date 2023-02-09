@@ -1,16 +1,17 @@
 .list-head {
   display: flex;
+  gap: 2%;
   flex-direction: row;
-  justify-content: space-between;
+  font-weight: 625;
+  color: #26343f;
 }
-.list-cover{
-  width: 100px;
+.list-cover {
+  width:8%
 }
 .row-entry {
   display: flex;
   height: 70px;
   gap: 20px;
-  justify-content: space-between;
   cursor: pointer;
 }
 .list-container {
@@ -26,15 +27,12 @@
   min-height: 100px;
   gap: 10px;
 }
-.list-comp{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
 .title-n-row {
+  display: flex;
   text-transform: capitalize;
-  max-width: 160px;
+  width: 70%;
   margin: 0;
+  align-items: center;
 }
 .list-entries {
   display: flex;
@@ -56,4 +54,7 @@ font-weight: 500;
 .list-n-row{
   border-radius: 5px;
   width: 52px;
+}
+.score-txt {
+  width: 10%;
 }
