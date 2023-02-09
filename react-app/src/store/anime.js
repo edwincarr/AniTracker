@@ -1,6 +1,7 @@
 const GET_ANIME = 'anime/LOAD_ANIME'
 const CLEAR_ANIME = 'anime/CLEAR_ANIME'
 const GET_ONE = 'anime/GET_ONE'
+const SEARCH_RESULTS = 'anime/SEARCH_RESULTS'
 
 const loadAnime = (payload) => ({
   type: GET_ANIME,
@@ -13,6 +14,11 @@ const clearAnime = () => ({
 
 const getOne = (payload) => ({
   type: GET_ONE,
+  payload
+})
+
+const search = (payload) => ({
+  type: SEARCH_RESULTS,
   payload
 })
 
@@ -32,7 +38,23 @@ export const getOneAnime = (animeid) => async(dispatch) => {
   dispatch(getOne(data['current']))
 }
 
-const initialState = {anime: [], page: 1, currentAni: {}}
+export const searchAnime = (data) => async(dispatch) => {
+  const { search } = data
+  const response = await fetch('/api/anime/search', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      search
+    })
+  })
+  if (response.ok){
+    let res = response.json()
+    dispatch(search(res['anime']))
+  }
+}
+const initialState = {anime: [], page: 1, currentAni: {}, searched: []}
 export default function anime_reducer(state = initialState, action) {
   let newState
   switch (action.type) {
@@ -42,12 +64,15 @@ export default function anime_reducer(state = initialState, action) {
       newState.page = state.page + 1
       return newState
     case CLEAR_ANIME:
-      newState = {currentAni: {...state.currentAni}, anime: [], page:1}
+      newState = {currentAni: {...state.currentAni}, anime: [], page:1, searched: []}
       return initialState
     case GET_ONE:
       newState = {...state}
       newState.currentAni = {...action.payload}
       return newState
+    case SEARCH_RESULTS:
+      newState = {...state}
+      newState.searched = {...action.payload}
     default:
       return state
   }
