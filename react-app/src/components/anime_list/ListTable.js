@@ -30,36 +30,33 @@ const ListTable = ({status}) => {
   }
 
   return ( list ?
-
     <>
-    {header}
-    <div className='list-container'>
+      {header}
+      <div className='list-container'>
         <div className="list-head">
-        <div className="list-cover"></div>
-        <div className="list-title">Title</div>
-        <div className="list-score">Score</div>
-        <div className="list-progress">Progress</div>
+          <div className="list-n-row"></div>
+          <div className="title-n-row">Title</div>
+          <div className="score-txt">Score</div>
+          <div className="list-progress">Progress</div>
         </div>
         <div className="list-entries">
-        {Array.isArray(list) ? list.map((anime, idx) => {
-          if(status !== anime.status){
-            return null;
+          {Array.isArray(list) ? list.map((anime, idx) => {
+            if(status !== anime.status){ return null; }
+              return (
+                <div key={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
+                  <img src={anime.anime.cover.extraLarge} className='list-n-row' alt={anime.anime.name.userPreferred}/>
+                  <p className='title-n-row'>{anime.anime.name.userPreferred}</p>
+                  <p className='score-txt'>{anime.score ? anime.score: 0}</p>
+                  <p >{anime.progress}/{anime.anime.episodes}</p>
+                </div>
+              )
+            })
+            : null
           }
-          return (
-            <div key={idx} className='row-entry' onClick={() => onClick(anime.anime.id)}>
-            <img src={anime.anime.cover.extraLarge} className='list-n-row' alt={anime.anime.name.userPreferred}/>
-            <p className='title-n-row'>{anime.anime.name.userPreferred}</p>
-            <p>{anime.score ? anime.score: 0}</p>
-            {status === 2 ? <p>{anime.anime.episodes}</p>: <p>{anime.progress}/{anime.anime.episodes}</p>}
-            </div>
-            )
-          })
-          : null
-        }
-          </div>
         </div>
-      </>
-      : null
+      </div>
+    </>
+    : null
   )
 }
 export default ListTable
