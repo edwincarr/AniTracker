@@ -94,5 +94,6 @@ def animeSearch():
       'search': form.data['search']
     }
     response = requests.post(url, json={'query': searchQuery, 'variables': variables})
+    print('\n\n\n\n\n\n\n\n\n\n', {'anime': response.json()['data']['Page']['media']})
     return {'anime': response.json()['data']['Page']['media']}
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401

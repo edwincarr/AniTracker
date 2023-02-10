@@ -17,7 +17,7 @@ const getOne = (payload) => ({
   payload
 })
 
-const search = (payload) => ({
+const searchAn = (payload) => ({
   type: SEARCH_RESULTS,
   payload
 })
@@ -38,8 +38,7 @@ export const getOneAnime = (animeid) => async(dispatch) => {
   dispatch(getOne(data['current']))
 }
 
-export const searchAnime = (data) => async(dispatch) => {
-  const { search } = data
+export const searchAnime = (search) => async(dispatch) => {
   const response = await fetch('/api/anime/search', {
     method: 'POST',
     headers: {
@@ -50,10 +49,11 @@ export const searchAnime = (data) => async(dispatch) => {
     })
   })
   if (response.ok){
-    let res = response.json()
-    dispatch(search(res['anime']))
+    let res = await response.json()
+    dispatch(searchAn(res['anime']))
   }
 }
+
 const initialState = {anime: [], page: 1, currentAni: {}, searched: []}
 export default function anime_reducer(state = initialState, action) {
   let newState
@@ -72,7 +72,8 @@ export default function anime_reducer(state = initialState, action) {
       return newState
     case SEARCH_RESULTS:
       newState = {...state}
-      newState.searched = {...action.payload}
+      newState.searched = [...state.searched, ...action.payload]
+      return newState
     default:
       return state
   }

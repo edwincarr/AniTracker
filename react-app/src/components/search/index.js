@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { searchAnime } from "../../store/anime"
+
 
 const Search = () => {
+  const [query, setQuery] = useState('')
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    const timeout = setTimeout(() => dispatch(searchAnime(query)), 1000)
+    return () => clearTimeout(timeout)
+  },[query])
+
   return (
-    <div>index</div>
+  <form>
+    <input
+    type='text'
+    value={query}
+    onChange={e => setQuery(e.target.value)}
+    ></input>
+  </form>
   )
 }
 
