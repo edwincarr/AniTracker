@@ -1,0 +1,21 @@
+.searchbar {
+  border-radius: 6px;
+  min-width: 50%;
+  height: 40px;
+  border: 1px solid transparent;
+  outline: none;
+  padding: 0 2%;
+}
+.searchbar:focus{
+  box-shadow: 0 0 5px #cbcbcb;
+}
+.searchContainer{
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchResults {
+  position: absolute;
+  color: red;
+}

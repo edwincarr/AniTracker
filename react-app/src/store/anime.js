@@ -28,7 +28,7 @@ export const loadingAnime = (page) => async(dispatch) => {
   dispatch(loadAnime(data['anime']))
 }
 
-export const clearState = () => async(dispatch) => {
+export const clearAnimeState = () => async(dispatch) => {
   dispatch(clearAnime())
 }
 
@@ -64,15 +64,16 @@ export default function anime_reducer(state = initialState, action) {
       newState.page = state.page + 1
       return newState
     case CLEAR_ANIME:
-      newState = {currentAni: {...state.currentAni}, anime: [], page:1, searched: []}
-      return initialState
+      newState = {...state}
+      newState.searched = []
+      return newState
     case GET_ONE:
       newState = {...state}
       newState.currentAni = {...action.payload}
       return newState
     case SEARCH_RESULTS:
       newState = {...state}
-      newState.searched = [...state.searched, ...action.payload]
+      newState.searched = [...action.payload]
       return newState
     default:
       return state

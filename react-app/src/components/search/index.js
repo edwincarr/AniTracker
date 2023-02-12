@@ -1,25 +1,43 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-
-import { searchAnime } from "../../store/anime"
+import './Search.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearAnimeState, searchAnime } from "../../store/anime"
 
 
 const Search = () => {
   const [query, setQuery] = useState('')
   const dispatch = useDispatch()
-  useEffect(()=>{
-    const timeout = setTimeout(() => dispatch(searchAnime(query)), 1000)
-    return () => clearTimeout(timeout)
-  },[query])
+  const results = useSelector(state => state.anime)
 
+  useEffect(()=>{
+    const timeout = setTimeout(() => {
+      dispatch(searchAnime(query))
+    }, 1000)
+    if(query===''){
+      dispatch(clearAnimeState())
+    }
+    return () => {
+      clearTimeout(timeout)
+    }
+  },[query])
   return (
-  <form>
-    <input
-    type='text'
-    value={query}
-    onChange={e => setQuery(e.target.value)}
-    ></input>
-  </form>
+    <div className='searchContainer'>
+      <input
+      placeholder='Search'
+      className='searchbar'
+      type='text'
+      value={query}
+      onChange={e => setQuery(e.target.value)}
+      ></input>
+      <div onClick={() => setQuery('')}>clear</div>
+      <div className='searchResults'>
+        {results?.searched.map((arr, idx) => {
+          return (
+            <p>{arr.name.userPreferred}</p>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
