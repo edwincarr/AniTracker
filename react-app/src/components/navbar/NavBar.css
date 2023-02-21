@@ -5,11 +5,11 @@ nav {
   height: var(--nav-height);
   align-items: center;
   justify-content: center;
-  /* padding: 0 15%; */
   position: fixed;
   top: 0;
   left: 0;
   transition: transform 0.4s;
+  z-index: 100;
 }
 .nav {
 display: flex;

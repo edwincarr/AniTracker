@@ -6,7 +6,7 @@ body {
   background-color: #e5ebf1;
   --nav-height: 75px;
   padding-top: var(--nav-height);
-  /* image-rendering: -webkit-optimize-contrast; */
+  image-rendering: -webkit-optimize-contrast;
 }
 #root{
   /* display: flex; */

@@ -1,6 +1,7 @@
 const GET_ANIME = 'anime/LOAD_ANIME'
 const CLEAR_ANIME = 'anime/CLEAR_ANIME'
 const GET_ONE = 'anime/GET_ONE'
+const SEARCH_RESULTS = 'anime/SEARCH_RESULTS'
 
 const loadAnime = (payload) => ({
   type: GET_ANIME,
@@ -16,13 +17,18 @@ const getOne = (payload) => ({
   payload
 })
 
+const searchAn = (payload) => ({
+  type: SEARCH_RESULTS,
+  payload
+})
+
 export const loadingAnime = (page) => async(dispatch) => {
   const response = await fetch(`/api/anime/browse/${page}`)
   let data = await response.json()
   dispatch(loadAnime(data['anime']))
 }
 
-export const clearState = () => async(dispatch) => {
+export const clearAnimeState = () => async(dispatch) => {
   dispatch(clearAnime())
 }
 
@@ -32,7 +38,23 @@ export const getOneAnime = (animeid) => async(dispatch) => {
   dispatch(getOne(data['current']))
 }
 
-const initialState = {anime: [], page: 1, currentAni: {}}
+export const searchAnime = (search) => async(dispatch) => {
+  const response = await fetch('/api/anime/search', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      search
+    })
+  })
+  if (response.ok){
+    let res = await response.json()
+    dispatch(searchAn(res['anime']))
+  }
+}
+
+const initialState = {anime: [], page: 1, currentAni: {}, searched: []}
 export default function anime_reducer(state = initialState, action) {
   let newState
   switch (action.type) {
@@ -42,11 +64,16 @@ export default function anime_reducer(state = initialState, action) {
       newState.page = state.page + 1
       return newState
     case CLEAR_ANIME:
-      newState = {currentAni: {...state.currentAni}, anime: [], page:1}
-      return initialState
+      newState = {...state}
+      newState.searched = []
+      return newState
     case GET_ONE:
       newState = {...state}
       newState.currentAni = {...action.payload}
+      return newState
+    case SEARCH_RESULTS:
+      newState = {...state}
+      newState.searched = [...action.payload]
       return newState
     default:
       return state

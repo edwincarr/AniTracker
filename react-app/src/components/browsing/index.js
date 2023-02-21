@@ -4,6 +4,7 @@ import { loadingAnime } from '../../store/anime';
 import AnimeCard from './AnimeCard';
 import { throttle } from 'underscore'
 import './browsing.css'
+import Search from '../search';
 
 const Browse = () => {
   const containerRef = useRef()
@@ -16,7 +17,7 @@ const Browse = () => {
     }
   }
 
-  const scrollEvent = throttle(onScroll, 200)
+  const scrollEvent = throttle(onScroll, 400)
 
   useEffect(()=>{
     window.removeEventListener('scroll', scrollEvent);
@@ -33,13 +34,16 @@ const Browse = () => {
 
 
   return (
-    <div className='browse-container' ref={containerRef} >
-    {anime?.anime?.map((arr, idx) => {
-      return (
-        <AnimeCard anime={arr} key={idx}/>
-        )
-      })}
-    </div>
+    <>
+      <Search/>
+      <div className='browse-container' ref={containerRef} >
+      {anime?.anime?.map((arr, idx) => {
+        return (
+          <AnimeCard anime={arr} key={idx}/>
+          )
+        })}
+      </div>
+    </>
   )
 }
 export default Browse
