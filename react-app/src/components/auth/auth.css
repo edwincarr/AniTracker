@@ -37,3 +37,12 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.errs {
+  color: #ec5d57;
+  font-weight: 600;
+}
+
+.input-con{
+  height: 45px;
+}

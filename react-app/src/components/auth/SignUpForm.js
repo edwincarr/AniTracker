@@ -43,53 +43,59 @@ const SignUpForm = () => {
 
   return (
     <div className='form-bg'>
-
-    <form className='auth-forms' onSubmit={onSignUp}>
-      <h1>Sign Up</h1>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-          ))}
-      </div>
-      <div>
-        <input
-          type='text'
-          name='username'
-          placeholder='Username'
-          onChange={updateUsername}
-          value={username}
-          ></input>
-      </div>
-      <div>
-        <input
-          type='text'
-          name='email'
-          placeholder='Email'
-          onChange={updateEmail}
-          value={email}
-          ></input>
-      </div>
-      <div>
-        <input
-          type='password'
-          name='password'
-          placeholder='Pasword'
-          onChange={updatePassword}
-          value={password}
-          ></input>
-      </div>
-      <div>
-        <input
-          type='password'
-          name='repeat_password'
-          placeholder='Repeat Password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+      <form className='auth-forms' onSubmit={onSignUp}>
+        <h1>Sign Up</h1>
+        <div className='input-con'>
+          <input
+            type='text'
+            name='username'
+            placeholder='Username'
+            onChange={updateUsername}
+            value={username}
+            ></input>
+          <div className='errs'>
+            {errors.username}
           </div>
+        </div>
+        <div className='input-con'>
+          <input
+            type='text'
+            name='email'
+            placeholder='Email'
+            onChange={updateEmail}
+            value={email}
+            ></input>
+          <div className='errs'>
+            {errors.email}
+          </div>
+        </div>
+        <div className='input-con'>
+          <input
+            type='password'
+            name='password'
+            placeholder='Pasword'
+            onChange={updatePassword}
+            value={password}
+            ></input>
+          <div className='errs'>
+            {errors.password}
+          </div>
+        </div>
+        <div className='input-con'>
+          <input
+            type='password'
+            name='repeat_password'
+            placeholder='Repeat Password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            ></input>
+          <div className='errs'>
+            {errors.confirm}
+          </div>
+        </div>
+        <button type='submit'>Sign Up</button>
+      </form>
+    </div>
   );
 };
 
