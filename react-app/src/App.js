@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
+import { HashRouter, Route, Routes, Navigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -35,7 +35,7 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <NavBar user={user}/>
       <Routes>
         <Route path='/login' exact={true} element={<LoginForm/>} />
@@ -54,7 +54,7 @@ function App() {
         }
         <Route path="*" element={<Navigate to='/' replace/>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
