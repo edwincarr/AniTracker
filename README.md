@@ -12,7 +12,7 @@
     <a href="https://github.com/edwincarr/AniTracker/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://ani-tracker.onrender.com">View Demo</a>
+    <a href="https://anitracker.onrender.com">View Demo</a>
     ·
     <a href="https://github.com/edwincarr/AniTracker/issues">Report Bug</a>
     ·
